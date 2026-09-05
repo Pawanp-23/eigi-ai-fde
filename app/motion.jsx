@@ -15,7 +15,7 @@ export function usePageMotion(motion,paused){
    root.classList.toggle('has-scrolled',scrollY>130);
   };
   const render=now=>{
-   const dt=Math.min((now-last)/1000,.05);last=now;const still=paused||reduced.matches;
+   const dt=Math.min((now-last)/1000,.05);last=now;const still=reduced.matches;
    current=still?0:current+(target-current)*(1-Math.exp(-dt*10));
    if(dirty||Math.abs(current-target)>.00005){
     motion.current.progress=current;
