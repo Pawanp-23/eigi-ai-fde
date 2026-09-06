@@ -1,0 +1,14 @@
+.scroll-words{display:inline}
+.scroll-word-window{display:inline-block;overflow:clip;vertical-align:bottom;padding:.08em .025em;margin:-.08em -.025em;white-space:pre}
+.scroll-word-window>span{display:inline-block;will-change:transform,opacity}
+.scroll-ribbons{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden}
+.scroll-ribbon{fill:none;stroke:#75d5d4;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+.scroll-ribbon-1{stroke:#3039f4}
+.scroll-ribbon .ribbon-guide{opacity:.09;stroke-width:2}
+.scroll-ribbon circle{fill:#f1f1f7;stroke-width:3}
+.expedition-ribbon-wrap{position:absolute;inset:0;pointer-events:none;z-index:1}
+.expedition-editorial{z-index:2}
+.collective-top,.collective-bottom{will-change:transform,opacity}
+.collective-sub{right:0;top:105px}
+@media(max-width:700px){.scroll-ribbon{stroke-width:6}.collective-sub{top:auto}}
+@media(prefers-reduced-motion:reduce){.scroll-word-window>span{will-change:auto;transform:none!important;opacity:1!important}}

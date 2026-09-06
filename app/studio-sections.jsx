@@ -1,8 +1,9 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion, useInView } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion, useInView, useScroll, useSpring, useMotionValueEvent, useTransform } from 'motion/react';
 import { ArrowUpRight, ArrowRight, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 import Frontier from './frontier';
+import { ScrollWords } from './scroll-detail';
 
 export function KineticText({text,className=''}){
  const reduced=useReducedMotion(),ref=useRef(null),visible=useInView(ref,{once:true,amount:.05});
@@ -15,13 +16,18 @@ const disciplines=[
 ];
 export function Collective({paused}){
  const [index,setIndex]=useState(0),reduced=useReducedMotion(),current=disciplines[index];
- return <section id="collective" className="collective" aria-label="Engineering disciplines">
-  <Frontier variant="hologram" paused={paused} discipline={index}/><div className="collective-vignette"/>
-  <div className="collective-top"><p className="eyebrow">THE MINDS BEHIND THE SYSTEM</p><h2><KineticText text="Human ingenuity."/></h2><p className="collective-sub">MANY DISCIPLINES.<br/>ONE SHARED DIRECTION.</p></div>
+ const section=useRef(null),world=useRef({progress:0});
+ const {scrollYProgress}=useScroll({target:section,offset:['start end','end start']});
+ const progress=useSpring(scrollYProgress,{stiffness:100,damping:30,mass:.6});
+ const drift=useTransform(progress,[0,1],[35,-35]);
+ useMotionValueEvent(progress,'change',p=>{world.current.progress=p;});
+ return <section ref={section} id="collective" className="collective" aria-label="Engineering disciplines">
+  <Frontier variant="hologram" paused={paused} discipline={index} motion={world}/><div className="collective-vignette"/>
+  <motion.div className="collective-top" style={paused||reduced?{y:0}:{y:drift}}><p className="eyebrow">THE MINDS BEHIND THE SYSTEM</p><h2><ScrollWords text="Human ingenuity." paused={paused}/></h2><p className="collective-sub">MANY DISCIPLINES.<br/>ONE SHARED DIRECTION.</p></motion.div>
   <div className="crosshair-row" aria-hidden="true">{Array.from({length:5},(_,i)=><Plus key={i} size={17} strokeWidth={1}/>)}</div>
   <span className="hologram-label">DIGITAL EXPLORER / GENERATIVE STUDY</span>
   <div className="collective-bottom"><div className="discipline-picker"><span className="eyebrow">ENGINEERING DISCIPLINES / {current.number}</span><h3>{current.label}</h3><div className="discipline-controls"><button onClick={()=>setIndex((index+2)%3)} aria-label="Previous discipline"><ChevronLeft size={21}/></button><button onClick={()=>setIndex((index+1)%3)} aria-label="Next discipline"><ArrowRight size={28}/></button></div></div>
-   <div className="discipline-detail" aria-live="polite"><AnimatePresence mode="wait"><motion.div key={index} initial={reduced?false:{opacity:0,y:20}} animate={{opacity:1,y:0}} exit={{opacity:0,y:reduced?0:-12}} transition={{duration:.3}}><h3>{current.title}</h3><p>{current.copy}</p><ul>{current.tags.map(tag=><li key={tag}>{tag}</li>)}</ul></motion.div></AnimatePresence></div>
+   <div className="discipline-detail" aria-live="polite"><AnimatePresence mode="wait"><motion.div key={index} initial={reduced||paused?false:{opacity:0,y:20}} animate={{opacity:1,y:0}} exit={{opacity:0,y:reduced||paused?0:-12}} transition={{duration:.4,ease:[.22,1,.36,1]}}><h3>{current.title}</h3><p><ScrollWords text={current.copy} paused={paused}/></p><ul>{current.tags.map(tag=><li key={tag}>{tag}</li>)}</ul></motion.div></AnimatePresence></div>
   </div>
  </section>;
 }

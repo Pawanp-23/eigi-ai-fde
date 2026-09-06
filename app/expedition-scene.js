@@ -45,8 +45,6 @@ export async function createExpedition(host,readState,onReady){
  const screen=new T.Mesh(track(new T.PlaneGeometry(5.16,3.23)),screenMat);screen.position.z=.112;device.add(screen);
  const lens=new T.Mesh(track(new T.SphereGeometry(.032,12,8)),track(new T.MeshStandardMaterial({color:0x01040a,metalness:.7,roughness:.13})));lens.position.set(-2.66,0,.12);device.add(lens);
  const light=new T.DirectionalLight(0xffffff,2.4);light.position.set(-2,4,7);deviceScene.add(light);
- const ribbonGroup=new T.Group();deviceScene.add(ribbonGroup);
- [0,1].forEach(i=>{const curve=new T.CatmullRomCurve3([new T.Vector3(-13,5-i*2,-5),new T.Vector3(-3,4-i*3,-6),new T.Vector3(6,6-i*2,-6),new T.Vector3(8,-2,-5),new T.Vector3(15,-2+i*2,-7)]);const ribbon=new T.Mesh(track(new T.TubeGeometry(curve,80,.11,8,false)),track(new T.MeshBasicMaterial({color:i?0x263cff:0x5ce9e2})));ribbonGroup.add(ribbon);});
  // Space lighting and real model.
  const key=new T.DirectionalLight(0xf0f7ff,3.2);key.position.set(-3,5,8);universe.add(key);
  const rim=new T.DirectionalLight(0x43ceff,3);rim.position.set(4,2,-4);universe.add(rim);
@@ -102,12 +100,11 @@ export async function createExpedition(host,readState,onReady){
  const io=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;needsRender=true;});io.observe(host);
  const move=e=>{const r=host.getBoundingClientRect();px=(e.clientX-r.left)/r.width-.5;py=(e.clientY-r.top)/r.height-.5;needsRender=true;};const reset=()=>{px=py=0;needsRender=true;};
  host.parentElement.addEventListener('pointermove',move);host.parentElement.addEventListener('pointerleave',reset);
- let lastP=-1,wasPaused=false,smoothP=readState().progress;
+ let lastP=-1,wasPaused=false;
  const render=now=>{
   frame=requestAnimationFrame(render);const dt=Math.min((now-last)/1000,.04);last=now;if(!visible||document.hidden)return;
   const state=readState(),paused=state.paused;
-  smoothP=mix(smoothP,state.progress,1-Math.exp(-dt*12));if(Math.abs(smoothP-state.progress)<.00001)smoothP=state.progress;
-  const p=state.reduced?0:smoothP;
+  const p=state.reduced?0:state.progress;
   if(paused&&!needsRender&&lastP===p&&wasPaused)return;
   lastP=p;wasPaused=paused;needsRender=false;if(!paused)time+=dt;
   const damping=1-Math.exp(-dt*5);rx=mix(rx,paused?0:px,damping);ry=mix(ry,paused?0:py,damping);
@@ -131,10 +128,17 @@ export async function createExpedition(host,readState,onReady){
   crystals.forEach((c,i)=>{const angle=i*2.39996;c.position.set(Math.cos(angle)*(3+i%4),Math.sin(angle)*(3+i%3),-213-(i%8));c.rotation.set(time*.12+i,time*.17+i*.3,0);});
   bloom.strength=p<.35?.16:mix(.28,.18,out);bloom.radius=.45;bloom.threshold=1.3;speedPass.uniforms.amount.value=paused?0:Math.sin(flight*Math.PI);speedPass.uniforms.fade.value=1;
   if(p<.24){
-   const originalAspect=camera.aspect;camera.aspect=5.16/3.23;camera.updateProjectionMatrix();renderer.setRenderTarget(screenTarget);renderer.render(universe,camera);renderer.setRenderTarget(null);camera.aspect=originalAspect;camera.updateProjectionMatrix();
-   const fullScale=mobile?8:6.5,scale=mix(mobile?.59:.91,fullScale,open);
-   device.scale.setScalar(scale);device.position.set(mix(mobile?0:-3.1,0,open),mix(mobile?-1.15:-.65,0,open),mix(0,3,open));device.rotation.set(mix(-.08,0,open)+ry*.035*(1-open),mix(.2,0,open)+rx*.07*(1-open),mix(-.035,0,open));
-   ribbonGroup.rotation.z=-p*1.2;deviceScene.background.copy(stageColor).lerp(black,segment(.18,.24,p));renderer.render(deviceScene,deviceCamera);
+   const deviceDepth=mix(0,3,open),viewHeight=2*Math.tan(T.MathUtils.degToRad(deviceCamera.fov/2))*(12-deviceDepth);
+   const fullScale=Math.max(viewHeight/3.23,viewHeight*deviceCamera.aspect/5.16)*1.015;
+   const scale=mix(mobile?.59:.91,fullScale,open);
+   const originalAspect=camera.aspect,originalFov=camera.fov;
+   // Match the screen's cropped frustum to the full viewport before handing off.
+   camera.aspect=5.16/3.23;
+   camera.fov=T.MathUtils.radToDeg(2*Math.atan(Math.tan(T.MathUtils.degToRad(originalFov/2))*Math.max(1,3.23*scale/viewHeight)));
+   camera.updateProjectionMatrix();renderer.setRenderTarget(screenTarget);renderer.render(universe,camera);renderer.setRenderTarget(null);
+   camera.aspect=originalAspect;camera.fov=originalFov;camera.updateProjectionMatrix();
+   device.scale.setScalar(scale);device.position.set(mix(mobile?0:-3.1,0,open),mix(mobile?-1.15:-.65,0,open),deviceDepth);device.rotation.set(mix(-.08,0,open)+ry*.035*(1-open),mix(.2,0,open)+rx*.07*(1-open),mix(-.035,0,open));
+   deviceScene.background.copy(stageColor).lerp(black,segment(.18,.24,p));renderer.render(deviceScene,deviceCamera);
   }else composer.render();
   host.dataset.phase=p<.24?'device':p<.42?'space':p<.83?'tunnel':'finale';host.dataset.progress=p.toFixed(3);
  };
