@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 
-export default function Sculpture({ variant = 'hero', assembled = false, paused = false, motion }) {
+export default function Sculpture({ variant = 'hero', assembled = false, paused = false, motion = undefined }) {
  const host=useRef(null),options=useRef({assembled,paused,motion});
  const [failed,setFailed]=useState(false);
  useEffect(()=>{options.current={assembled,paused,motion};},[assembled,paused,motion]);

@@ -9,6 +9,7 @@ import Frontier from './frontier';
 import EigiTeam from '@/components/ui/team';
 import { KineticText, Collective, CapabilityMarquee, Expertise } from './studio-sections';
 import { usePageMotion } from './motion';
+import HeroPunchline from './hero-punchline';
 const contact='mailto:pawanpatil2305@gmail.com?subject=Let%E2%80%99s%20build%20with%20eigi_ai';
 const capabilities=[
  {id:'01',title:'Knowledge, connected.',category:'ENTERPRISE AI / KNOWLEDGE SYSTEMS',variant:'network',label:'Connected knowledge system',description:'Turn scattered information into answers your team can trace and trust.',detail:'A connected knowledge layer across your documents and business tools. Retrieve relevant context, respect access permissions, and give your team answers with sources.',steps:['Connect approved sources','Retrieve permission-aware context','Generate a grounded answer','Evaluate quality with your team']},
@@ -47,13 +48,9 @@ export default function Home(){
     <Frontier assembled={assembled} paused={paused} motion={motion}/>
     <div className="hero-shade"/>
     <p className="scene-eyebrow"><span className="status-dot"/> FORWARD DEPLOYED ENGINEERING</p>
-    <div className="story-chapters">
-     <div className="story-chapter chapter-opening"><h1><KineticText text="Intelligence,"/><br/><em><KineticText text="deployed."/></em></h1><p>We turn your complex world<br/>into a system that works.</p></div>
-     <div className="story-chapter chapter-connected"><span className="chapter-label">01 / MAKE THE CONNECTION</span><h2>Everything.<br/><em>Working together.</em></h2><p>Your data. Your tools. Your people.<br/>Connected by engineers who understand the whole picture.</p></div>
-     <div className="story-chapter chapter-production"><span className="chapter-label">02 / GO BEYOND THE PROTOTYPE</span><h2>Into the<br/><em>real world.</em></h2><p>From an ambitious idea<br/>to the work you do every day.</p></div>
-    </div>
+    <HeroPunchline/>
     <div className="hero-bottom"><a href="#experience" className="story-skip">ENTER THE 3D EXPERIENCE <ArrowUpRight size={16}/></a><button className="assemble-button" onClick={()=>setAssembled(!assembled)} aria-pressed={assembled}>{assembled?'RELEASE THE SIGNAL':'FOCUS THE SIGNAL'}<Plus size={18} className={assembled?'rotated':''}/></button></div>
-    <div className="story-progress" aria-hidden="true"><span className="story-marker active">EXPLORE</span><span className="story-marker">CONNECT</span><span className="story-marker">DEPLOY</span><span className="story-progress-line"/></div>
+    <div className="story-progress" aria-hidden="true"><span className="story-marker active">MISSION</span><span className="story-marker">ENGINEERS</span><span className="story-marker">PROBLEM</span><span className="story-marker">SOLUTION</span><span className="story-progress-line"/></div>
     <div className="scroll-cue" aria-hidden="true"><span>SCROLL TO TRANSFORM</span><ArrowDown size={16}/></div>
    </div>
   </section>
