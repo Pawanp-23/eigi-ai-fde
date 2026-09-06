@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/compone
 import Sculpture from './sculpture';
 import Expedition from './expedition';
 import Frontier from './frontier';
+import EigiTeam from '@/components/ui/team';
 import { KineticText, Collective, CapabilityMarquee, Expertise } from './studio-sections';
 import { usePageMotion } from './motion';
 const contact='mailto:pawanpatil2305@gmail.com?subject=Let%E2%80%99s%20build%20with%20eigi_ai';
@@ -80,6 +81,7 @@ export default function Home(){
    </div>
   </section>
   <Expedition paused={paused} contact={contact}/>
+  <EigiTeam paused={paused}/>
   <footer id="contact" className="footer"><div className="footer-top"><a href="#top" className="wordmark">eigi_ai<span>✳</span></a><div><p>HAVE A CHALLENGE IN MIND?</p><a className="email-link" href={contact}>pawanpatil2305@gmail.com <ArrowUpRight size={20}/></a></div><a className="back-top" href="#top" aria-label="Back to top"><ArrowDown size={22}/></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} eigi_ai</span><span>FORWARD DEPLOYED ENGINEERING</span><span><a href="/credits.txt">3D ASSET CREDITS ↗</a></span></div></footer>
   <Sheet open={menu} onOpenChange={setMenu} onOpenChangeComplete={finishMenuNavigation}><SheetContent finalFocus={()=>pendingSection.current?false:undefined} className="navigation-sheet" showCloseButton={false}><div className="sheet-top"><SheetTitle className="wordmark">eigi_ai</SheetTitle><button className="pill" onClick={()=>setMenu(false)}>CLOSE <X size={18}/></button></div><SheetDescription className="sr-only">Explore eigi_ai forward deployed engineering.</SheetDescription><nav aria-label="Expanded navigation">{[['01','Home','#top'],['02','Our approach','#approach'],['03','Disciplines','#collective'],['04','Possibilities','#capabilities'],['05','Expertise','#expertise'],['06','The experience','#experience']].map(([n,label,href])=><a href={href} key={n} onClick={event=>{event.preventDefault();pendingSection.current=href;setMenu(false);}}><span>{n}</span>{label}<ArrowUpRight/></a>)}</nav><a className="sheet-email" href={contact}>Let’s build something useful.<ArrowUpRight/></a></SheetContent></Sheet>
   <Dialog open={selected!==null} onOpenChange={open=>{if(!open)setSelected(null)}}><DialogContent className="concept-dialog">{selected!==null&&<><p className="eyebrow">EIGI / {capabilities[selected].id} — CAPABILITY CONCEPT</p><DialogTitle className="concept-title">{capabilities[selected].title}</DialogTitle><DialogDescription className="concept-description">{capabilities[selected].detail}</DialogDescription><ol className="concept-flow">{capabilities[selected].steps.map((step,i)=><li key={step}><span>0{i+1}</span>{step}<ArrowDown size={16}/></li>)}</ol><p className="concept-note">An illustrative architecture, tailored to your workflow during discovery.</p><a className="pill dark" href={contact}>DISCUSS YOUR USE CASE <ArrowUpRight size={17}/></a></>}</DialogContent></Dialog>
