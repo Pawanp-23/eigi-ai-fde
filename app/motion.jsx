@@ -5,7 +5,7 @@ export function usePageMotion(motion,paused){
   const root=document.querySelector('main'),story=document.querySelector('.scroll-story');
   if(!root||!story)return;
   const chapters=[...document.querySelectorAll('.story-chapter')],markers=[...document.querySelectorAll('.story-marker')];
-  const moving=[...document.querySelectorAll('[data-scroll-shift]')],steps=[...document.querySelectorAll('.method-step')];
+  const moving=[...document.querySelectorAll('[data-scroll-shift]')],steps=[...document.querySelectorAll('.method-step')],scrub=[...document.querySelectorAll('[data-scrub-words]')];
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let target=0,current=0,raf=0,last=performance.now(),dirty=true;
   const clamp=x=>Math.max(0,Math.min(1,x));
@@ -30,6 +30,7 @@ export function usePageMotion(motion,paused){
     moving.forEach(el=>{const r=el.getBoundingClientRect();const amount=Number(el.getAttribute('data-scroll-shift')||25);el.style.setProperty('--scroll-shift',`${still?0:(clamp((innerHeight-r.top)/(innerHeight+r.height))-.5)*amount}px`);});
     steps.forEach(el=>{const r=el.getBoundingClientRect();el.style.setProperty('--step-progress',String(still?1:clamp((innerHeight*.85-r.top)/(innerHeight*.65))));});
     const intro=document.querySelector('.intro');if(intro){const r=intro.getBoundingClientRect();intro.style.setProperty('--read-progress',`${still?100:clamp((innerHeight-r.top)/(innerHeight*.9))*100}%`);}
+    scrub.forEach(el=>{const r=el.getBoundingClientRect(),p=still?1:clamp((innerHeight*.88-r.top)/(innerHeight*.55));[...el.children].forEach((word,i)=>word.style.opacity=String(.22+.78*clamp(p*(el.children.length+5)-i)));});
     dirty=false;
    }
    raf=requestAnimationFrame(render);

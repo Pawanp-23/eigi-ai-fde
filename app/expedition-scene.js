@@ -13,7 +13,7 @@ const segment=(a,b,p)=>{const x=clamp((p-a)/(b-a),0,1);return x*x*(3-2*x);};
 const mix=T.MathUtils.lerp;
 
 export async function createExpedition(host,readState,onReady){
- const renderer=new T.WebGLRenderer({alpha:false,antialias:false,powerPreference:'high-performance'});
+ const renderer=new T.WebGLRenderer({alpha:false,antialias:true,powerPreference:'high-performance'});
  renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.2:1.5));
  renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
  host.appendChild(renderer.domElement);
@@ -31,8 +31,8 @@ export async function createExpedition(host,readState,onReady){
   uniforms:{tDiffuse:{value:null},amount:{value:0},fade:{value:1}},
   vertexShader:'varying vec2 vUv; void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
   fragmentShader:`uniform sampler2D tDiffuse;uniform float amount;uniform float fade;varying vec2 vUv;
-  void main(){vec2 d=vUv-.5;vec2 shift=d*amount*.0035;vec4 col=texture2D(tDiffuse,vUv);col.r=texture2D(tDiffuse,vUv+shift).r;col.b=texture2D(tDiffuse,vUv-shift).b;
-  vec3 smear=vec3(0.);for(int i=1;i<=4;i++){smear+=texture2D(tDiffuse,vUv-d*float(i)*amount*.004).rgb;}col.rgb=mix(col.rgb,smear*.25,amount*.22);float vignette=1.-dot(d,d)*.38;gl_FragColor=vec4(col.rgb*vignette*fade,1.);}`
+  void main(){vec2 d=vUv-.5;vec2 shift=d*amount*.0012;vec4 col=texture2D(tDiffuse,vUv);col.r=texture2D(tDiffuse,vUv+shift).r;col.b=texture2D(tDiffuse,vUv-shift).b;
+  vec3 smear=vec3(0.);for(int i=1;i<=4;i++){smear+=texture2D(tDiffuse,vUv-d*float(i)*amount*.002).rgb;}col.rgb=mix(col.rgb,smear*.25,amount*.22);float vignette=1.-dot(d,d)*.38;gl_FragColor=vec4(col.rgb*vignette*fade,1.);}`
  });composer.addPass(speedPass);composer.addPass(new OutputPass());
  const screenTarget=track(new T.WebGLRenderTarget(1024,640,{type:T.HalfFloatType}));
  // A physical tablet with a live view of the same world inside its screen.
@@ -126,10 +126,10 @@ export async function createExpedition(host,readState,onReady){
   rim.position.set(4,3,cameraZ-13);rim.target.position.set(0,0,cameraZ-10);rim.target.updateMatrixWorld();
   pink.position.set(-3,-1,cameraZ-8);pink.intensity=mix(0,65,flight)*(1-out);
   beamLight.position.set(1,1,cameraZ-3);beamLight.intensity=85*(1-out);
-  glowMat.emissiveIntensity=mix(2.4,4.2,flight);hotMat.emissiveIntensity=mix(.3,4.1,segment(.5,.75,p));
+  glowMat.emissiveIntensity=mix(1.2,2.1,flight);hotMat.emissiveIntensity=mix(.2,2.3,segment(.5,.75,p));
   badges.forEach((badge,i)=>{const side=i%2===0?-1:1,row=Math.floor(i/2);const x=side*(mobile?2:4.3)+Math.sin(time*.33+i)*.25;const y=3.2-row*2.1+Math.sin(time*.45+i)*.18;badge.position.set(x,y,-214-(i%3)*.7);badge.rotation.set(Math.sin(time*.3+i)*.12,Math.sin(time*.2+i)*.12,side*.15+Math.sin(time*.3+i)*.09);badge.scale.setScalar(mobile?.7:1);});
   crystals.forEach((c,i)=>{const angle=i*2.39996;c.position.set(Math.cos(angle)*(3+i%4),Math.sin(angle)*(3+i%3),-213-(i%8));c.rotation.set(time*.12+i,time*.17+i*.3,0);});
-  bloom.strength=p<.35?.28:mix(.9,.35,out);bloom.radius=.65;speedPass.uniforms.amount.value=paused?0:Math.sin(flight*Math.PI);speedPass.uniforms.fade.value=1;
+  bloom.strength=p<.35?.16:mix(.28,.18,out);bloom.radius=.45;bloom.threshold=1.3;speedPass.uniforms.amount.value=paused?0:Math.sin(flight*Math.PI);speedPass.uniforms.fade.value=1;
   if(p<.24){
    const originalAspect=camera.aspect;camera.aspect=5.16/3.23;camera.updateProjectionMatrix();renderer.setRenderTarget(screenTarget);renderer.render(universe,camera);renderer.setRenderTarget(null);camera.aspect=originalAspect;camera.updateProjectionMatrix();
    const fullScale=mobile?8:6.5,scale=mix(mobile?.59:.91,fullScale,open);
