@@ -1,12 +1,13 @@
 # Eigi_ai — Forward Deployed Engineering
 
-An interactive landing page for Eigi_ai, featuring scroll-driven typography, a 3D landscape, holographic engineering disciplines, an SVG ribbon sequence, and a tablet-to-space experience.
+An interactive FDE website with a pointer-responsive pixel hero, light/dark themes, scroll-driven AI capability cards, floating expertise cards, and engineering-discipline sections.
 
 ## Local development
 
-Requires Node.js **22.13.0 or newer** and npm.
+Requires Node.js **22.13.0 or newer**, npm, and **Git LFS**.
 
 ```sh
+git lfs install
 git clone https://github.com/Pawanp-23/eigi-ai-fde.git
 cd eigi-ai-fde
 npm ci
@@ -18,7 +19,7 @@ Open the local URL printed by the development server (normally `http://localhost
 ## Validation and production build
 
 ```sh
-npx tsc --noEmit --incremental false
+npm run typecheck
 npm run build
 ```
 
@@ -49,7 +50,7 @@ This project uses Vinext with Next-compatible imports; it is not a standard Next
 
 [Existing hosted website](https://eigi-ai-studio.pawanpatil2305.chatgpt.site/)
 
-Hosted access is controlled by the existing Sites sharing settings. Pushing to this repository does not automatically deploy the website; no GitHub deployment workflow is configured.
+Hosted access is controlled by the existing Sites sharing settings. Pushing to this repository does not automatically deploy the website; GitHub Actions validates types and builds, with advisory lint reporting. No automatic deployment is configured.
 
 The contact links use `pawanpatil2305@gmail.com`. Portraits and capability examples are illustrative, not employee profiles or client endorsements. Portrait images are currently loaded from their external URLs in `components/ui/team.tsx`.
 
@@ -60,3 +61,15 @@ Motion controls and reduced-motion preferences provide simpler presentations. We
 Third-party model and texture attribution is recorded in [public/credits.txt](public/credits.txt). Preserve those credits when redistributing the assets.
 
 Keep credentials in ignored local environment files. Dependencies, generated build output, local tool state, and environment files are excluded from Git. The hosting configuration contains a project identifier, not a deployment credential.
+
+## Repository organization and release notes
+
+- `app/styles/` — section styles, loaded in their original cascade order
+- `components/ui/scroll-morph-hero.tsx` — interactive AI capability cards
+- `app/signal-hero.tsx` — default pixel hero
+- `public/media/` — active alternate video hero assets
+- `archive/media/` — superseded media preserved with Git LFS, excluded from deployment
+- `docs/production.md` — release process, validation status, and remaining limitations
+- `.github/workflows/ci.yml` — pull request and main branch validation
+
+See [production handoff](docs/production.md) before deploying. See [design specification](design.md) for design history.

@@ -1,9 +1,9 @@
 'use client';
 import { useEffect } from 'react';
-export function usePageMotion(motion,paused){
+export function usePageMotion(motion,paused,variant){
  useEffect(()=>{
   const root=document.querySelector('main'),story=document.querySelector('.scroll-story');
-  if(!root||!story)return;
+  if(!root)return;
   const chapters=[...document.querySelectorAll('.story-chapter')],markers=[...document.querySelectorAll('.story-marker')];
   const letters=chapters.map(el=>[...el.querySelectorAll('.hero-char')]);
   const supporting=chapters.map(el=>[...el.querySelectorAll('.chapter-label,.hero-support')]);
@@ -15,7 +15,7 @@ export function usePageMotion(motion,paused){
   const started=performance.now();
   const measure=()=>{
    root.classList.toggle('hero-static',paused||reduced.matches);
-   const rect=story.getBoundingClientRect();target=clamp(-rect.top/Math.max(1,story.offsetHeight-innerHeight));dirty=true;
+   if(story){const rect=story.getBoundingClientRect();target=clamp(-rect.top/Math.max(1,story.offsetHeight-innerHeight));}dirty=true;
    root.style.setProperty('--page-progress',String(clamp(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight))));
    root.classList.toggle('has-scrolled',scrollY>130);
   };
@@ -26,7 +26,7 @@ export function usePageMotion(motion,paused){
    if(dirty||Math.abs(current-target)>.00005||!openingFinished){
     openingFinished=opening===1;
     motion.current.progress=current;
-    story.style.setProperty('--story-progress',String(current));
+    story?.style.setProperty('--story-progress',String(current));
     // Non-overlapping exit/entry windows leave time to read each complete phrase.
     const range=[[0,.16,.23],[.23,.43,.50],[.50,.70,.77],[.77,1.1,1.2]];
     chapters.forEach((el,i)=>{
@@ -37,7 +37,7 @@ export function usePageMotion(motion,paused){
       const delay=j/Math.max(1,letters[i].length-1)*.55;
       const reveal=staticHero?1:ease((enter-delay)/.45),leave=staticHero?0:ease((exit-delay)/.45);
       char.style.opacity=String(reveal*(1-leave));
-      char.style.transform=`translate3d(0,${((1-reveal)*105-leave*65).toFixed(2)}%,0)`;
+      char.style.transform=`translate3d(0,${((1-reveal)*35-leave*20).toFixed(2)}%,0)`;
      });
      supporting[i].forEach(node=>{node.style.opacity=String(staticHero?1:ease(enter)*(1-ease(exit)));});
     });
@@ -53,5 +53,5 @@ export function usePageMotion(motion,paused){
   root.classList.toggle('motion-paused',paused);measure();current=target;raf=requestAnimationFrame(render);
   window.addEventListener('scroll',measure,{passive:true});window.addEventListener('resize',measure);reduced.addEventListener('change',measure);
   return()=>{cancelAnimationFrame(raf);window.removeEventListener('scroll',measure);window.removeEventListener('resize',measure);reduced.removeEventListener('change',measure);};
- },[motion,paused]);
+ },[motion,paused,variant]);
 }

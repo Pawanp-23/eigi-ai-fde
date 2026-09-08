@@ -46,8 +46,8 @@ export async function createExpedition(host,readState,onReady){
  const lens=new T.Mesh(track(new T.SphereGeometry(.032,12,8)),track(new T.MeshStandardMaterial({color:0x01040a,metalness:.7,roughness:.13})));lens.position.set(-2.66,0,.12);device.add(lens);
  const light=new T.DirectionalLight(0xffffff,2.4);light.position.set(-2,4,7);deviceScene.add(light);
  // Space lighting and real model.
- const key=new T.DirectionalLight(0xf0f7ff,3.2);key.position.set(-3,5,8);universe.add(key);
- const rim=new T.DirectionalLight(0x43ceff,3);rim.position.set(4,2,-4);universe.add(rim);
+ const key=new T.DirectionalLight(0xf0f7ff,1.6);key.position.set(-3,5,8);universe.add(key);
+ const rim=new T.DirectionalLight(0xa9bbdb,1.2);rim.position.set(4,2,-4);universe.add(rim);
  const pink=new T.PointLight(0xfd5399,30,22);universe.add(pink);
  universe.add(new T.AmbientLight(0xaacbff,.32));
  const astronaut=new T.Group();universe.add(astronaut);
@@ -62,11 +62,20 @@ export async function createExpedition(host,readState,onReady){
  const model=gltf.scene,box=new T.Box3().setFromObject(model),center=box.getCenter(new T.Vector3()),size=box.getSize(new T.Vector3());
  model.position.sub(center);const body=new T.Group();body.add(model);body.scale.setScalar(4.8/size.y);astronaut.add(body);
  model.traverse(o=>{if(o.isMesh){o.material.envMapIntensity=.55;track(o.geometry);track(o.material);for(const value of Object.values(o.material))if(value?.isTexture)track(value);}});
+ // Keep the original astronaut; deform only its left sleeve around the shoulder.
+ const wave={value:0};
+ model.traverse(o=>{if(!o.isMesh)return;o.material.onBeforeCompile=shader=>{
+  shader.uniforms.eigiWave=wave;
+  shader.vertexShader='uniform float eigiWave;\n'+shader.vertexShader;
+  const rig=`float sleeve=smoothstep(.27,.40,-position.x)*smoothstep(.86,1.04,position.y);float angle=eigiWave*sleeve;mat2 turn=mat2(cos(angle),sin(angle),-sin(angle),cos(angle));`;
+  shader.vertexShader=shader.vertexShader.replace('#include <beginnormal_vertex>','#include <beginnormal_vertex>\n'+rig+'objectNormal.xy=turn*objectNormal.xy;');
+  shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\ntransformed.xy=turn*(transformed.xy-vec2(-.31,1.5))+vec2(-.31,1.5);');
+ };});
  // A deep, twisting truss tunnel, built as instances rather than hundreds of draw calls.
  const tunnel=new T.Group();universe.add(tunnel);
  const metalMat=track(new T.MeshStandardMaterial({color:0x627c8e,metalness:.88,roughness:.28,envMapIntensity:.5}));
- const glowMat=track(new T.MeshStandardMaterial({color:0x73e9ff,emissive:0x38d9ff,emissiveIntensity:3.3,metalness:.3,roughness:.2}));
- const hotMat=track(new T.MeshStandardMaterial({color:0xff68a8,emissive:0xfc2878,emissiveIntensity:3.3,metalness:.2,roughness:.2}));
+ const glowMat=track(new T.MeshStandardMaterial({color:0xc4d0ff,emissive:0x667ed1,emissiveIntensity:1.2,metalness:.3,roughness:.2}));
+ const hotMat=track(new T.MeshStandardMaterial({color:0xc4d0ff,emissive:0x667ed1,emissiveIntensity:1.2,metalness:.2,roughness:.2}));
  const unit=track(new T.BoxGeometry(1,1,1)),beamCount=54*8*3;
  const truss=new T.InstancedMesh(unit,metalMat,beamCount),cyan=new T.InstancedMesh(unit,glowMat,54*4),magenta=new T.InstancedMesh(unit,hotMat,54*4);tunnel.add(truss,cyan,magenta);
  const dummy=new T.Object3D(),axis=new T.Vector3(1,0,0),a=new T.Vector3(),b=new T.Vector3(),direction=new T.Vector3();
@@ -80,12 +89,12 @@ export async function createExpedition(host,readState,onReady){
   if(j%2===0)place(cyan,ci++,edge,end,.045);else place(magenta,mi++,edge,end,.038);
  }
  [truss,cyan,magenta].forEach(m=>{m.instanceMatrix.needsUpdate=true;m.frustumCulled=false;});
- const beamLight=new T.PointLight(0x72dcff,85,32,1.5);universe.add(beamLight);
+ const beamLight=new T.PointLight(0xa9b9e1,85,32,1.5);universe.add(beamLight);
  // Floating type badges and crystalline objects in the closing world.
  const finale=new T.Group();universe.add(finale);
  const badges=[];
  const badgeWords=['SHIP IT','</>','eigi_ai','BUILD','AI','NEXT','01 → ∞','DEPLOY'];
- const badgeColors=['#baff29','#ff78b6','#54e4ee','#f9f9fb','#ffba4b','#ac9cff','#fff279','#6de4c5'];
+ const badgeColors=['#c8d1e7','#eef0f4','#b7c3df','#eef0f4','#c8d1e7','#b7c3df','#eef0f4','#c8d1e7'];
  badgeWords.forEach((word,i)=>{
   const canvas=document.createElement('canvas');canvas.width=512;canvas.height=220;const ctx=canvas.getContext('2d');
   ctx.fillStyle='#fff';ctx.beginPath();ctx.roundRect(5,5,502,210,80);ctx.fill();ctx.fillStyle='#11131a';ctx.beginPath();ctx.roundRect(13,13,486,194,73);ctx.fill();ctx.fillStyle=badgeColors[i];ctx.beginPath();ctx.roundRect(22,22,468,176,66);ctx.fill();ctx.fillStyle='#11131a';ctx.font=`bold ${word.length>5?61:80}px Arial`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(word,256,115);
@@ -93,7 +102,7 @@ export async function createExpedition(host,readState,onReady){
   const badge=new T.Mesh(track(new T.PlaneGeometry(2.2,.95)),track(new T.MeshBasicMaterial({map:tex,transparent:true,side:T.DoubleSide,toneMapped:false})));finale.add(badge);badges.push(badge);
  });
  const crystalGeo=track(new T.OctahedronGeometry(.27,0)),crystalMat=track(new T.MeshPhysicalMaterial({color:0xa1d8ff,metalness:.95,roughness:.12,clearcoat:1,envMapIntensity:2}));
- const crystals=[];for(let i=0;i<36;i++){const crystal=new T.Mesh(crystalGeo,crystalMat);finale.add(crystal);crystals.push(crystal);}
+ const crystals=[];for(let i=0;i<14;i++){const crystal=new T.Mesh(crystalGeo,crystalMat);finale.add(crystal);crystals.push(crystal);}
  const stageColor=new T.Color(0xf1f1f7),black=new T.Color(0x02040a);
  const resize=()=>{width=host.clientWidth;height=host.clientHeight;if(!width||!height)return;renderer.setSize(width,height);composer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();deviceCamera.aspect=width/height;deviceCamera.updateProjectionMatrix();needsRender=true;};
  const ro=new ResizeObserver(resize);ro.observe(host);resize();
@@ -106,18 +115,19 @@ export async function createExpedition(host,readState,onReady){
   const state=readState(),paused=state.paused;
   const p=state.reduced?0:state.progress;
   if(paused&&!needsRender&&lastP===p&&wasPaused)return;
-  lastP=p;wasPaused=paused;needsRender=false;if(!paused)time+=dt;
+  lastP=p;wasPaused=paused;needsRender=false;if(!paused)time+=dt*.35;
   const damping=1-Math.exp(-dt*5);rx=mix(rx,paused?0:px,damping);ry=mix(ry,paused?0:py,damping);
   const open=segment(.07,.24,p),enter=segment(.35,.48,p),flight=segment(.42,.82,p),out=segment(.81,.91,p);
   const mobile=width<650;
   space.visible=p<.48;space.scale.setScalar(1-enter*.6);earth.rotation.y=time*.015;
   tunnel.visible=p>.37&&p<.91;tunnel.rotation.z=Math.sin(flight*3)*.04;
   finale.visible=p>.8;
-  astronaut.rotation.set(Math.sin(time*.32)*.035,rx*.2+Math.sin(time*.24)*.1,-.06+Math.sin(time*.4)*.045+enter*.25*(1-out));
-  camera.fov=mix(43,65,Math.sin(flight*Math.PI));camera.updateProjectionMatrix();
+  wave.value=out*(-2.05+Math.sin(time*5)*.16);
+  astronaut.rotation.set(Math.sin(time*.32)*.035,rx*.2+Math.sin(time*.24)*.1,-.06+Math.sin(time*.4)*.045+Math.sin(flight*Math.PI)*.55);
+  camera.fov=mix(43,51,Math.sin(flight*Math.PI));camera.updateProjectionMatrix();
   const cameraZ=mix(10,-207,flight);camera.position.set(Math.sin(flight*7)*.45+rx*.25,ry*.2,cameraZ);
-  const roll=Math.sin(flight*Math.PI)*1.3;camera.up.set(Math.sin(roll),Math.cos(roll),0);camera.lookAt(0,0,cameraZ-25);
-  const astronautZ=mix(0,cameraZ-20,enter);astronaut.position.set(mix(0,mobile?.35:1,out),Math.sin(time*.55)*.1-.2,mix(astronautZ,-217,out));
+  const roll=Math.sin(flight*Math.PI)*.15;camera.up.set(Math.sin(roll),Math.cos(roll),0);camera.lookAt(0,0,cameraZ-25);
+  const astronautZ=mix(0,cameraZ-20,enter);astronaut.position.set(mix(Math.sin(enter*Math.PI)*.6,mobile?0:2.15,out),Math.sin(time*.8)*.16-.2-enter*(1-out)*.55,mix(astronautZ,-217,out));
   astronaut.scale.setScalar(mix(mix(1,.35,segment(.48,.66,p)),1.05,out));
   key.position.set(camera.position.x-3,5,cameraZ+5);key.target.position.set(0,0,cameraZ-10);key.target.updateMatrixWorld();
   rim.position.set(4,3,cameraZ-13);rim.target.position.set(0,0,cameraZ-10);rim.target.updateMatrixWorld();
@@ -126,7 +136,7 @@ export async function createExpedition(host,readState,onReady){
   glowMat.emissiveIntensity=mix(1.2,2.1,flight);hotMat.emissiveIntensity=mix(.2,2.3,segment(.5,.75,p));
   badges.forEach((badge,i)=>{const side=i%2===0?-1:1,row=Math.floor(i/2);const x=side*(mobile?2:4.3)+Math.sin(time*.33+i)*.25;const y=3.2-row*2.1+Math.sin(time*.45+i)*.18;badge.position.set(x,y,-214-(i%3)*.7);badge.rotation.set(Math.sin(time*.3+i)*.12,Math.sin(time*.2+i)*.12,side*.15+Math.sin(time*.3+i)*.09);badge.scale.setScalar(mobile?.7:1);});
   crystals.forEach((c,i)=>{const angle=i*2.39996;c.position.set(Math.cos(angle)*(3+i%4),Math.sin(angle)*(3+i%3),-213-(i%8));c.rotation.set(time*.12+i,time*.17+i*.3,0);});
-  bloom.strength=p<.35?.16:mix(.28,.18,out);bloom.radius=.45;bloom.threshold=1.3;speedPass.uniforms.amount.value=paused?0:Math.sin(flight*Math.PI);speedPass.uniforms.fade.value=1;
+  bloom.strength=p<.35?.16:mix(.22,.025,out);bloom.radius=.45;bloom.threshold=1.3;speedPass.uniforms.amount.value=paused?0:Math.sin(flight*Math.PI)*.18;speedPass.uniforms.fade.value=1;
   if(p<.24){
    const deviceDepth=mix(0,3,open),viewHeight=2*Math.tan(T.MathUtils.degToRad(deviceCamera.fov/2))*(12-deviceDepth);
    const fullScale=Math.max(viewHeight/3.23,viewHeight*deviceCamera.aspect/5.16)*1.015;

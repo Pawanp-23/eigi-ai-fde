@@ -29,9 +29,8 @@ function DisciplineCard({ item, index }: { item: typeof disciplines[number]; ind
 
 export default function EigiTeam({ paused = false }: { paused?: boolean }) {
   const reduced = useReducedMotion();
-  const [localPaused, setLocalPaused] = useState(false);
+  const [localPaused, setLocalPaused] = useState(true);
   return <section id="eigi-team" className="eigi-team-section" aria-labelledby="eigi-team-heading">
-    <div className="eigi-team-transition" aria-hidden="true"/>
     <svg className="eigi-team-scribble" aria-hidden="true" fill="none" viewBox="0 0 460 154">
       <path d="M-87.463 458.432C-102.118 348.092 -77.3418 238.841 -15.0744 188.274C57.4129 129.408 180.708 150.071 351.748 341.128C278.246 -374.233 633.954 380.602 548.123 42.7707" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="40"/>
     </svg>

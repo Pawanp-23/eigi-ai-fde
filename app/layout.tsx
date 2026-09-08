@@ -1,10 +1,18 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import './studio.css';
-import './team.css';
-import './hero-punchline.css';
-import './scroll-detail.css';
+import './styles/studio.css';
+import './styles/team.css';
+import './styles/hero-punchline.css';
+import './styles/scroll-detail.css';
+import './styles/engineering-hero.css';
+import './styles/hero-video.css';
+import './styles/refinement.css';
+import './styles/signal-hero.css';
+import './styles/theme-navigation.css';
+import './styles/scroll-morph-hero.css';
+import './styles/parallax-scrolling.css';
+import './styles/final-polish.css';
 const sans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const mono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
 export const metadata: Metadata = {
@@ -15,4 +23,3 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en"><body className={`${sans.variable} ${mono.variable}`}>{children}</body></html>;
 }
-
