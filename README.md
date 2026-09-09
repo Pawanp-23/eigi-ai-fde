@@ -31,7 +31,7 @@ npm run build
 - Three.js for the interactive scenes
 - Motion for scroll effects and transitions
 - Tailwind CSS and Base UI components
-- Static Vite build output and Sites hosting integration
+- Static Vite build output served by nginx from a Docker image
 
 The project follows the same conventional Vite `src/` organization as Eigi School.
 
@@ -45,13 +45,12 @@ The project follows the same conventional Vite `src/` organization as Eigi Schoo
 - `src/hooks/usePageMotion.jsx` — landing-page motion orchestration
 - `src/components/ui/` — reusable Base UI and Shadcn-style primitives
 - `public/` — favicon, model, texture and asset credits
-- `.openai/hosting.json` — existing Sites project association
 
 ## Website and content
 
 [Existing hosted website](https://eigi-ai-studio.pawanpatil2305.chatgpt.site/)
 
-Hosted access is controlled by the existing Sites sharing settings. Pushing to this repository does not automatically deploy the website; GitHub Actions validates types and builds, with advisory lint reporting. No automatic deployment is configured.
+Pushing to `main` runs two GitHub Actions workflows: `ci.yml` validates types and builds with advisory lint reporting, and `production_fde_deployment.yml` builds the Docker image, pushes it to Docker Hub, and deploys it to EC2.
 
 The contact links use `pawanpatil2305@gmail.com`. Portraits and capability examples are illustrative, not employee profiles or client endorsements. Portrait images are currently loaded from their external URLs in `src/pages/LandingPage/sections/TeamSection/index.tsx`.
 
@@ -61,7 +60,7 @@ Motion controls and reduced-motion preferences provide simpler presentations. We
 
 Third-party model and texture attribution is recorded in [public/credits.txt](public/credits.txt). Preserve those credits when redistributing the assets.
 
-Keep credentials in ignored local environment files. Dependencies, generated build output, local tool state, and environment files are excluded from Git. The hosting configuration contains a project identifier, not a deployment credential.
+Keep credentials in ignored local environment files. Dependencies, generated build output, local tool state, and environment files are excluded from Git.
 
 ## Repository organization and release notes
 
@@ -72,5 +71,6 @@ Keep credentials in ignored local environment files. Dependencies, generated bui
 - `src/theme/archive/media/` — superseded, unimported media preserved with Git LFS and excluded from the build
 - `docs/PRODUCTION.md` — release process, validation status, and remaining limitations
 - `.github/workflows/ci.yml` — pull request and main branch validation
+- `.github/workflows/production_fde_deployment.yml` — Docker image build, push, and EC2 deployment
 
 See [production handoff](docs/PRODUCTION.md) before deploying. See [design specification](docs/design.md) for design history.

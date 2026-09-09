@@ -7,10 +7,10 @@ run `git lfs pull` if video files contain pointer text rather than media bytes.
 Run `npm ci`, `npm run typecheck`, and `npm run build` before release.
 `npm start` previews the static Vite production build. It does not deploy.
 
-This is a conventional Vite application with static output. Keep
-`.openai/hosting.json` and the Sites plugin configuration when deploying through
-the existing Sites project. A GitHub
-push runs validation only; it does not update the published site.
+This is a conventional Vite application with static output. `Dockerfile` builds
+the static bundle and serves it from nginx. A push to `main` runs `ci.yml` for
+validation and `production_fde_deployment.yml` for the image build and EC2
+deployment.
 
 ## Assets
 

@@ -24,7 +24,7 @@ The application uses:
 - Tailwind CSS 4 and reusable Base UI components
 - Motion for animation and scroll effects
 - Three.js for interactive scenes
-- OpenAI Sites configuration for the existing hosted project
+- Docker and nginx for the production image
 
 ## Operating Rules
 
@@ -46,8 +46,8 @@ These rules apply to every change in this repository.
 ### Ask before destructive or outward-facing actions
 
 Get explicit approval before deleting source or assets, rewriting Git history,
-force-pushing, merging, publishing, deploying, or changing the hosted Sites
-project. A successful local build does not authorize deployment.
+force-pushing, merging, publishing, or deploying. A successful local build does
+not authorize deployment.
 
 ### Do not edit generated or dependency content
 
@@ -58,8 +58,8 @@ Do not hand-edit or commit:
 - local environment files
 - temporary logs, caches, or editor state
 
-Keep credentials out of source code and Git. The value in
-`.openai/hosting.json` is a project association, not a deployment credential.
+Keep credentials out of source code and Git. Deployment credentials belong in
+GitHub repository secrets.
 
 ## Development Environment
 
@@ -93,7 +93,6 @@ The filesystem is canonical. Keep new files within the closest matching area.
 ```text
 eigi-fde/
 ├── .github/workflows/          # CI validation
-├── .openai/hosting.json        # Existing Sites project association
 ├── docs/                       # Design and production documentation
 ├── public/                     # Publicly served static assets and credits
 │   ├── media/                  # Active video hero assets
@@ -127,7 +126,7 @@ eigi-fde/
 ├── Dockerfile                  # Static production image
 ├── README.md                   # Repository entry point
 ├── package.json                # Scripts and dependencies
-└── vite.config.js              # Vite and Sites configuration
+└── vite.config.js              # Vite configuration
 ```
 
 ## Architecture and Placement
@@ -215,9 +214,10 @@ it does not deploy it.
 
 ## Hosting and Production
 
-The build output is static and is served from `dist/`. Preserve the Sites Vite
-plugin and `.openai/hosting.json`. Do not create a new Sites project when an
-existing project ID is present.
+The build output is static and is served from `dist/`. `Dockerfile` copies that
+output into an nginx image, and
+`.github/workflows/production_fde_deployment.yml` builds it, pushes it to Docker
+Hub, and deploys it to EC2.
 
 Before any approved release, read `docs/PRODUCTION.md`, pull Git LFS content,
 run the validation commands, and confirm the deployment platform accepts the
