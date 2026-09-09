@@ -42,6 +42,8 @@ availability guarantee is implied by a successful build.
 
 Section CSS lives in `src/theme/`; global Tailwind setup stays in `src/index.css`.
 Import order in `src/main.tsx` is deliberate. Avoid alphabetizing those imports.
-Shared UI lives in `src/components/ui/`; page-specific scenes and sections live in `src/components/`.
+Shared UI lives in `src/components/ui/`; reusable site components live in
+`src/components/common/`; page-specific UI lives in named folders under
+`src/pages/LandingPage/sections/`.
 Retained hero variants support comparison/rollback and should not be deleted as unused code.
 Keep credentials and local tool output out of Git. Use repository secrets for any future deployment workflow.

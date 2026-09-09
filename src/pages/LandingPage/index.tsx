@@ -24,22 +24,22 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
-import Sculpture from '../components/sculpture';
-import ScrollMorphHero from '@/components/ui/scroll-morph-hero';
-import Frontier from '../components/frontier';
-import EigiTeam from '@/components/ui/team';
+import Sculpture from './sections/SculptureSection';
+import ScrollMorphHero from './sections/HeroSection/scroll-morph-hero';
+import Frontier from './sections/FrontierSection';
+import EigiTeam from './sections/TeamSection';
 import {
   KineticText,
   Collective,
   CapabilityMarquee,
   Expertise,
-} from '../components/studio-sections';
-import { usePageMotion } from '../components/motion';
-import HeroPunchline from '../components/hero-punchline';
-import HeroVideo from '../components/hero-video';
-import EngineeringHero from '../components/engineering-hero';
-import SignalHero from '../components/signal-hero';
-import { ParallaxComponent } from '@/components/ui/parallax-scrolling';
+} from './sections/StudioSections';
+import { usePageMotion } from '@/hooks/usePageMotion';
+import HeroPunchline from './sections/HeroSection/hero-punchline';
+import HeroVideo from './sections/HeroSection/hero-video';
+import EngineeringHero from './sections/HeroSection/engineering-hero';
+import SignalHero from './sections/HeroSection/signal-hero';
+import { ParallaxComponent } from './sections/ParallaxSection';
 
 const contact =
   'mailto:pawanpatil2305@gmail.com?subject=Let%E2%80%99s%20build%20with%20eigi_ai';

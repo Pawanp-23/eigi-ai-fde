@@ -18,8 +18,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-import Frontier from './frontier';
-import { ScrollWords, ScrollRibbons } from './scroll-detail';
+import Frontier from '../FrontierSection';
+import { ScrollWords, ScrollRibbons } from '@/components/common/ScrollDetail';
 
 export function KineticText({ text, className = '' }) {
   const reduced = useReducedMotion(),

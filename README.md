@@ -37,12 +37,13 @@ The project follows the same conventional Vite `src/` organization as Eigi Schoo
 
 ## Project structure
 
-- `src/pages/LandingPage.tsx` — page sections and navigation
-- `src/components/hero-punchline.tsx`, `src/components/motion.jsx` — four-part animated hero
-- `src/components/frontier-scene.js` — landscape and hologram scenes
-- `src/components/expedition.jsx`, `src/components/expedition-scene.js` — tablet, orbit, tunnel and finale
-- `src/components/scroll-detail.jsx` — SVG followers and word reveals
-- `src/components/ui/team.tsx` — illustrative engineering-discipline marquee
+- `src/pages/LandingPage/index.tsx` — page composition and navigation
+- `src/pages/LandingPage/sections/` — page sections organized in named folders with `index` entry points
+- `src/pages/LandingPage/sections/HeroSection/` — active and retained hero variants
+- `src/pages/LandingPage/sections/FrontierSection/`, `ExpeditionSection/` — Three.js scenes and renderers
+- `src/components/common/ScrollDetail/` — shared scroll effects used by page sections
+- `src/hooks/usePageMotion.jsx` — landing-page motion orchestration
+- `src/components/ui/` — reusable Base UI and Shadcn-style primitives
 - `public/` — favicon, model, texture and asset credits
 - `.openai/hosting.json` — existing Sites project association
 
@@ -52,7 +53,7 @@ The project follows the same conventional Vite `src/` organization as Eigi Schoo
 
 Hosted access is controlled by the existing Sites sharing settings. Pushing to this repository does not automatically deploy the website; GitHub Actions validates types and builds, with advisory lint reporting. No automatic deployment is configured.
 
-The contact links use `pawanpatil2305@gmail.com`. Portraits and capability examples are illustrative, not employee profiles or client endorsements. Portrait images are currently loaded from their external URLs in `src/components/ui/team.tsx`.
+The contact links use `pawanpatil2305@gmail.com`. Portraits and capability examples are illustrative, not employee profiles or client endorsements. Portrait images are currently loaded from their external URLs in `src/pages/LandingPage/sections/TeamSection/index.tsx`.
 
 Motion controls and reduced-motion preferences provide simpler presentations. WebGL is required for the full 3D experience.
 
@@ -65,8 +66,8 @@ Keep credentials in ignored local environment files. Dependencies, generated bui
 ## Repository organization and release notes
 
 - `src/theme/` — section styles, loaded in their original cascade order
-- `src/components/ui/scroll-morph-hero.tsx` — interactive AI capability cards
-- `src/components/signal-hero.tsx` — default pixel hero
+- `src/pages/LandingPage/sections/HeroSection/scroll-morph-hero.tsx` — interactive AI capability cards
+- `src/pages/LandingPage/sections/HeroSection/signal-hero.tsx` — default pixel hero
 - `public/media/` — active alternate video hero assets
 - `src/theme/archive/media/` — superseded, unimported media preserved with Git LFS and excluded from the build
 - `docs/PRODUCTION.md` — release process, validation status, and remaining limitations

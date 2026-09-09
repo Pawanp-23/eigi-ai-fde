@@ -12,7 +12,7 @@ import {
   useTransform,
 } from 'motion/react';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { ScrollWords, ScrollRibbons } from './scroll-detail';
+import { ScrollWords, ScrollRibbons } from '@/components/common/ScrollDetail';
 
 const chapters = [
   ['Overview', 0],

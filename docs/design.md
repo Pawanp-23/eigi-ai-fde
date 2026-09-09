@@ -145,20 +145,20 @@ Character reveals use staggered opacity and vertical movement. Reading windows s
 
 ## Implementation map
 
-| File                                                | Responsibility                                                                 |
-| --------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `src/pages/LandingPage.tsx`                         | Page composition, preview selection, navigation, section copy, contact actions |
-| `src/components/engineering-hero.tsx`               | Experimental engineering hero and diagram                                      |
-| `src/theme/engineering-hero.css`                    | Scoped hero styles, responsive rules, CSS motion, comparison control           |
-| `src/components/hero-punchline.tsx`                 | Original hero's four punchlines                                                |
-| `src/theme/hero-punchline.css`                      | Original hero typography and chapter presentation                              |
-| `src/components/motion.jsx`                         | Shared page motion, original hero progression, text effects                    |
-| `src/components/frontier` and related scene modules | Existing 3D landscape and holographic rendering                                |
-| `src/components/studio-sections`                    | Disciplines, capability marquee, expertise presentation                        |
-| `src/components/scroll-detail.jsx`                  | Scroll word reveals and SVG ribbons                                            |
-| `src/components/expedition.jsx`                     | Tablet, orbit, tunnel, and finale sequence                                     |
-| `src/components/ui/team.tsx`                        | Illustrative discipline portraits                                              |
-| `src/main.tsx`                                      | Application mount and stylesheet imports                                       |
+| File                                                        | Responsibility                                                                 |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `src/pages/LandingPage/index.tsx`                           | Page composition, preview selection, navigation, section copy, contact actions |
+| `src/pages/LandingPage/sections/HeroSection/engineering-hero.tsx` | Experimental engineering hero and diagram                                  |
+| `src/theme/engineering-hero.css`                            | Scoped hero styles, responsive rules, CSS motion, comparison control           |
+| `src/pages/LandingPage/sections/HeroSection/hero-punchline.tsx` | Original hero's four punchlines                                              |
+| `src/theme/hero-punchline.css`                              | Original hero typography and chapter presentation                              |
+| `src/hooks/usePageMotion.jsx`                               | Shared page motion, original hero progression, text effects                    |
+| `src/pages/LandingPage/sections/FrontierSection/`           | Existing 3D landscape and holographic rendering                               |
+| `src/pages/LandingPage/sections/ExpeditionSection/`         | Tablet, orbit, tunnel, and finale sequence                                     |
+| `src/pages/LandingPage/sections/StudioSections/`            | Disciplines, capability marquee, expertise presentation                        |
+| `src/components/common/ScrollDetail/index.jsx`              | Scroll word reveals and SVG ribbons                                            |
+| `src/pages/LandingPage/sections/TeamSection/`               | Illustrative discipline portraits                                              |
+| `src/main.tsx`                                              | Application mount and stylesheet imports                                       |
 
 The app uses React, TypeScript, Vite, Three.js, Motion, Tailwind, and Lucide. Follow the existing stack; the new hero adds no dependency.
 
@@ -195,7 +195,7 @@ The local default hero keeps the four character-reveal punchlines and replaces i
 - No 90 fps claim: both sources are approximately 24 fps. Display refresh and animation frame rates depend on the device.
 - MP4 fast-start enabled; JPEG posters included. Second clip uses metadata preloading and begins playback before its reveal.
 - Shared pause, reduced-motion preference, offscreen detection, and tab visibility control playback. Poster imagery remains if autoplay is unavailable.
-- New files: `src/components/hero-video.tsx`, `src/theme/hero-video.css`, and `public/media/`.
+- New files: `src/pages/LandingPage/sections/HeroSection/hero-video.tsx`, `src/theme/hero-video.css`, and `public/media/`.
 - Local preview: `http://localhost:5173/`. Landscape comparison: `http://localhost:5173/?hero=original`.
 - This update is prepared locally; deployment is a separate action.
 
