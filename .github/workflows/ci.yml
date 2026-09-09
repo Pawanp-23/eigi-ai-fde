@@ -22,7 +22,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
-      - name: Lint (existing findings; see docs/production.md)
+      - name: Lint (existing findings; see PRODUCTION.md)
         continue-on-error: true
         run: npm run lint
       - run: npm run build

@@ -14,7 +14,7 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by the development server (normally `http://localhost:3000`).
+Open the local URL printed by the development server (normally `http://localhost:5173`).
 
 ## Validation and production build
 
@@ -23,26 +23,27 @@ npm run typecheck
 npm run build
 ```
 
-`npm start` runs the generated Cloudflare Worker locally through Wrangler after a successful build. It does not publish the website.
+`npm start` previews the generated static production build after `npm run build`. It does not publish the website.
 
 ## Technology
 
-- React 19, TypeScript, Vinext and Vite
+- React 19, TypeScript and Vite
 - Three.js for the interactive scenes
 - Motion for scroll effects and transitions
 - Tailwind CSS and Base UI components
-- Cloudflare Worker build output and Sites hosting integration
+- Static Vite build output and Sites hosting integration
 
-This project uses Vinext with Next-compatible imports; it is not a standard Next.js deployment.
+The project follows the same conventional Vite `src/` organization as Eigi School.
 
 ## Project structure
 
-- `app/page.tsx` — page sections and navigation
-- `app/hero-punchline.tsx`, `app/motion.jsx` — four-part animated hero
-- `app/frontier-scene.js` — landscape and hologram scenes
-- `app/expedition.jsx`, `app/expedition-scene.js` — tablet, orbit, tunnel and finale
-- `app/scroll-detail.jsx` — SVG followers and word reveals
-- `components/ui/team.tsx` — illustrative engineering-discipline marquee
+- `src/pages/LandingPage/index.tsx` — page composition and navigation
+- `src/pages/LandingPage/sections/` — page sections organized in named folders with `index` entry points
+- `src/pages/LandingPage/sections/HeroSection/` — active and retained hero variants
+- `src/pages/LandingPage/sections/FrontierSection/`, `ExpeditionSection/` — Three.js scenes and renderers
+- `src/components/common/ScrollDetail/` — shared scroll effects used by page sections
+- `src/hooks/usePageMotion.jsx` — landing-page motion orchestration
+- `src/components/ui/` — reusable Base UI and Shadcn-style primitives
 - `public/` — favicon, model, texture and asset credits
 - `.openai/hosting.json` — existing Sites project association
 
@@ -52,7 +53,7 @@ This project uses Vinext with Next-compatible imports; it is not a standard Next
 
 Hosted access is controlled by the existing Sites sharing settings. Pushing to this repository does not automatically deploy the website; GitHub Actions validates types and builds, with advisory lint reporting. No automatic deployment is configured.
 
-The contact links use `pawanpatil2305@gmail.com`. Portraits and capability examples are illustrative, not employee profiles or client endorsements. Portrait images are currently loaded from their external URLs in `components/ui/team.tsx`.
+The contact links use `pawanpatil2305@gmail.com`. Portraits and capability examples are illustrative, not employee profiles or client endorsements. Portrait images are currently loaded from their external URLs in `src/pages/LandingPage/sections/TeamSection/index.tsx`.
 
 Motion controls and reduced-motion preferences provide simpler presentations. WebGL is required for the full 3D experience.
 
@@ -64,12 +65,12 @@ Keep credentials in ignored local environment files. Dependencies, generated bui
 
 ## Repository organization and release notes
 
-- `app/styles/` — section styles, loaded in their original cascade order
-- `components/ui/scroll-morph-hero.tsx` — interactive AI capability cards
-- `app/signal-hero.tsx` — default pixel hero
+- `src/theme/` — section styles, loaded in their original cascade order
+- `src/pages/LandingPage/sections/HeroSection/scroll-morph-hero.tsx` — interactive AI capability cards
+- `src/pages/LandingPage/sections/HeroSection/signal-hero.tsx` — default pixel hero
 - `public/media/` — active alternate video hero assets
-- `archive/media/` — superseded media preserved with Git LFS, excluded from deployment
-- `docs/production.md` — release process, validation status, and remaining limitations
+- `src/theme/archive/media/` — superseded, unimported media preserved with Git LFS and excluded from the build
+- `docs/PRODUCTION.md` — release process, validation status, and remaining limitations
 - `.github/workflows/ci.yml` — pull request and main branch validation
 
-See [production handoff](docs/production.md) before deploying. See [design specification](design.md) for design history.
+See [production handoff](docs/PRODUCTION.md) before deploying. See [design specification](docs/design.md) for design history.

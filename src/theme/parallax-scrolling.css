@@ -1,0 +1,64 @@
+/* Keep reveals short and layer movement separate from existing transforms. */
+.subtle-parallax [data-reveal] {
+  animation-name: subtle-section-arrival;
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes subtle-section-arrival {
+  from {
+    opacity: 0.65;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subtle-parallax .card-caption {
+  transition: color 0.25s;
+}
+
+.subtle-parallax .card-caption:hover {
+  translate: inherit;
+}
+
+.subtle-parallax .section-rule {
+  margin-top: 0;
+}
+
+@media (max-width: 800px) {
+  .subtle-parallax [data-reveal] {
+    animation-name: subtle-mobile-arrival;
+  }
+}
+
+@keyframes subtle-mobile-arrival {
+  from {
+    opacity: 0.8;
+    transform: translateY(7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subtle-parallax [data-reveal] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}
+
+.subtle-parallax.motion-paused [data-reveal] {
+  animation: none;
+  opacity: 1;
+  transform: none;
+  clip-path: none;
+}
