@@ -1,0 +1,695 @@
+/* Shared editorial palette and restrained movement. Video sources remain untouched. */
+:root {
+  --blue: #5268b8;
+  --page-paper: #f1f1f4;
+  --page-ink: #17191f;
+  --page-muted: #626873;
+  --page-night: #10141c;
+  --border: #d9dce3;
+}
+
+body {
+  background: var(--page-paper);
+  color: var(--page-ink);
+}
+
+.site-header {
+  display: grid;
+  grid-template-columns: 180px minmax(260px, 1fr) auto;
+  align-items: start;
+  gap: 48px;
+  padding: 38px 5% 34px;
+  min-height: 145px;
+}
+
+.site-header .wordmark {
+  font-size: 34px;
+  line-height: 1.15;
+}
+
+.header-manifesto {
+  font-size: clamp(16px, 1.5vw, 23px);
+  line-height: 1.35;
+  max-width: 440px;
+  margin: 0;
+}
+
+.header-actions {
+  align-items: center;
+}
+
+.section-pad {
+  padding-inline: 5%;
+}
+
+.intro h2 {
+  max-width: 1100px;
+}
+
+.intro-bottom {
+  gap: 8%;
+}
+
+.card-1 {
+  padding-top: 0;
+}
+
+.capability-visual {
+  height: 430px;
+}
+
+.collective,
+.capability-marquee {
+  background: var(--page-night);
+}
+
+.collective .frontier-canvas {
+  filter: saturate(0.35);
+  opacity: 0.65;
+}
+
+.collective-vignette {
+  background: linear-gradient(0deg, #10141cf5, transparent 70%);
+}
+
+.collective-sub {
+  top: 0;
+  max-width: 180px;
+}
+
+.collective-top h2 {
+  max-width: 72%;
+}
+
+.discipline-detail p {
+  color: #c0c4cf;
+}
+
+.discipline-controls button:last-child {
+  background: var(--blue);
+  width: 60px;
+  height: 60px;
+}
+
+.discipline-controls button:hover {
+  background: #3e507f;
+  transform: none;
+}
+
+.marquee-track {
+  animation: none;
+  width: 100%;
+}
+
+.marquee-group {
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 5%;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.marquee-group[aria-hidden='true'] {
+  display: none;
+}
+
+.marquee-group > span {
+  font-size: clamp(18px, 2.6vw, 40px);
+  gap: 20px;
+  padding: 0;
+}
+
+.marquee-group svg {
+  color: #8c9cca;
+  width: 16px;
+}
+
+.marquee-window {
+  mask-image: none;
+}
+
+.marquee-1 .marquee-group > span {
+  color: #a4adbf;
+}
+
+.expertise {
+  background: var(--page-night);
+  height: 240svh;
+}
+
+.expertise-heading h2 > span + span {
+  margin-left: 0;
+  transform: none !important;
+}
+
+.expertise-heading h2 {
+  font-size: clamp(58px, 7vw, 110px);
+  line-height: 1.02;
+}
+
+.expertise-description {
+  max-width: 260px;
+  color: #c0c4cf;
+}
+
+.expertise-heading {
+  z-index: 2;
+}
+
+.expertise-deck {
+  z-index: 3;
+}
+
+.expertise .scroll-ribbons {
+  opacity: 0.38;
+}
+
+.expertise .scroll-ribbon {
+  stroke: #8496c5;
+  stroke-width: 5;
+}
+
+.expertise .scroll-ribbon-1 {
+  display: none;
+}
+
+.expertise .scroll-ribbon circle {
+  fill: #e1e6f2;
+}
+
+.expertise-card:hover,
+.expertise-position.is-selected .expertise-card {
+  translate: 0 -6px;
+  filter: drop-shadow(0 12px 16px #0003);
+}
+
+.expertise-card {
+  transition:
+    translate 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.65s;
+}
+
+.card-face {
+  background: var(--page-paper);
+  color: var(--page-ink);
+}
+
+.card-back,
+.card-back-symbol {
+  background: #344362;
+}
+
+.expertise-list > span {
+  border-color: #cbd0db;
+}
+
+.expertise-still {
+  height: auto;
+}
+
+.expertise-still .expertise-sticky {
+  position: relative;
+  min-height: 850px;
+}
+
+.expertise-still .expertise-instruction {
+  visibility: hidden;
+}
+
+.scroll-ribbon {
+  stroke: #a5b0cf;
+  stroke-width: 6;
+}
+
+.scroll-ribbon-1 {
+  stroke: var(--blue);
+}
+
+.hero-accent,
+.video-story .hero-accent {
+  color: #d5ddf3;
+}
+
+.blue-text {
+  color: var(--blue);
+}
+
+.eigi-team-section {
+  background: var(--page-paper);
+}
+
+.eigi-team-transition {
+  background: linear-gradient(180deg, #10141c, #626b7b 38%, var(--page-paper));
+}
+
+.eigi-team-icon {
+  background: var(--blue);
+  box-shadow: none;
+}
+
+.eigi-statement-mark {
+  color: var(--blue);
+}
+
+.eigi-team-card:hover img,
+.eigi-team-card:focus-visible img {
+  filter: grayscale(1);
+  transform: scale(1.015);
+}
+
+.eigi-marquee-track {
+  animation-duration: 100s;
+}
+
+.eigi-team-heading h2 svg {
+  color: #9caace;
+}
+
+.capability-card:hover .card-open {
+  transform: none;
+}
+
+.capability-visual canvas {
+  filter: saturate(0.4);
+}
+
+@media (max-width: 1000px) {
+  .site-header {
+    grid-template-columns: 130px 1fr auto;
+    gap: 24px;
+  }
+
+  .header-manifesto {
+    font-size: 16px;
+  }
+
+  .header-actions .pill {
+    padding-inline: 17px;
+  }
+
+  .capability-visual {
+    height: 350px;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 6%;
+    min-height: 90px;
+    gap: 16px;
+  }
+
+  .header-manifesto {
+    display: none;
+  }
+
+  .site-header .wordmark {
+    font-size: 28px;
+  }
+
+  .section-pad {
+    padding-inline: 6%;
+  }
+
+  .collective-sub {
+    position: static;
+    max-width: none;
+  }
+
+  .collective-top h2 {
+    max-width: 100%;
+  }
+
+  .collective {
+    height: 940px;
+  }
+
+  .marquee-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-inline: 6%;
+    gap: 22px 12px;
+  }
+
+  .marquee-group > span {
+    font-size: 17px;
+    gap: 8px;
+    white-space: normal;
+  }
+
+  .expertise-description {
+    max-width: none;
+  }
+
+  .expertise .scroll-ribbons {
+    display: none;
+  }
+
+  .expertise-still .expertise-sticky {
+    min-height: 0;
+  }
+
+  .expertise-card:hover {
+    translate: 0 0;
+  }
+
+  .expertise-heading h2 {
+    font-size: 14vw;
+  }
+
+  .discipline-controls button:last-child {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expertise-card {
+    transition: none;
+  }
+
+  .expertise-card:hover {
+    translate: 0 0;
+  }
+}
+
+/* Full-viewport film stage and independently floating cards. */
+.fullscreen-film-page .site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 40;
+  color: #fff;
+  background: linear-gradient(#0007, transparent);
+  min-height: 110px;
+}
+
+.fullscreen-film-page .header-manifesto {
+  display: none;
+}
+
+.fullscreen-film-page .site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fullscreen-film-page .video-story .hero-scene {
+  margin: 0;
+  width: 100%;
+  border-radius: 0;
+  height: 100svh;
+  min-height: 650px;
+}
+
+.fullscreen-film-page .video-story .scene-eyebrow {
+  top: 135px;
+}
+
+.fullscreen-film-page .video-story .story-progress {
+  top: 175px;
+}
+
+.expertise-deck {
+  top: 49%;
+}
+
+.expertise-position {
+  height: 390px;
+}
+
+.expertise-card {
+  will-change: transform;
+}
+
+.expertise-description {
+  top: 65px;
+}
+
+@media (min-width: 701px) and (max-height: 850px) {
+  .expertise-deck {
+    top: 43%;
+  }
+
+  .expertise-position {
+    height: 340px;
+  }
+}
+
+@media (max-width: 700px) {
+  .fullscreen-film-page .video-story .hero-scene {
+    min-height: 100svh;
+  }
+
+  .fullscreen-film-page .site-header {
+    min-height: 90px;
+  }
+
+  .fullscreen-film-page .video-story .scene-eyebrow {
+    top: 110px;
+  }
+
+  .fullscreen-film-page .video-story .story-progress {
+    top: 150px;
+  }
+
+  .expertise-deck {
+    top: auto;
+  }
+
+  .expertise-position {
+    height: 395px;
+  }
+
+  .expertise-description {
+    top: auto;
+  }
+}
+
+/* One persistent glass surface, including the brand and all controls. */
+.site-header.frosted-header,
+.fullscreen-film-page .site-header.frosted-header {
+  position: fixed;
+  inset: 18px 24px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  padding: 12px 20px;
+  gap: 20px;
+  border: 1px solid #ffffff26;
+  border-radius: 14px;
+  background: rgba(24, 28, 33, 0.48);
+  color: #fff;
+  backdrop-filter: blur(28px) saturate(115%);
+  -webkit-backdrop-filter: blur(28px) saturate(115%);
+  box-shadow: 0 8px 32px #0002;
+  z-index: 50;
+}
+
+.frosted-header .header-manifesto {
+  display: none;
+}
+
+.frosted-header .brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+  letter-spacing: -1px;
+  white-space: nowrap;
+}
+
+.brand-lockup img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.frosted-header .header-actions,
+.has-scrolled .frosted-header .header-actions {
+  position: static;
+  background: none;
+  filter: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.frosted-header .pill,
+.frosted-header .motion-control {
+  height: 44px;
+  min-height: 44px;
+}
+
+.frosted-header .menu-button {
+  color: #17191f;
+}
+
+.fullscreen-film-page .scroll-story {
+  margin-inline: 0;
+}
+
+.hero-static .fullscreen-film-page .video-story .hero-scene {
+  height: auto;
+  min-height: 100svh;
+}
+
+.expedition-top {
+  top: 115px;
+}
+
+.expedition-finale {
+  padding-right: 36%;
+  text-align: left;
+}
+
+.expedition-finale h2 {
+  font-size: clamp(48px, 6vw, 100px);
+}
+
+.expedition-finale .expedition-cta {
+  margin-left: 0;
+}
+
+.finale-hello {
+  display: block;
+  color: #d5ddf3;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 700px) {
+  .site-header.frosted-header,
+  .fullscreen-film-page .site-header.frosted-header {
+    inset: 10px 12px auto;
+    padding: 10px 12px;
+    min-height: 64px;
+    gap: 8px;
+  }
+
+  .frosted-header .brand-lockup {
+    font-size: 22px;
+    gap: 6px;
+  }
+
+  .brand-lockup img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .frosted-header .header-actions {
+    gap: 5px;
+  }
+
+  .frosted-header .pill {
+    font-size: 10px;
+    padding-inline: 10px;
+  }
+
+  .expedition-top {
+    top: 94px;
+  }
+
+  .expedition-finale {
+    padding: 0 6%;
+    text-align: center;
+    justify-content: flex-start;
+    padding-top: 130px;
+  }
+
+  .expedition-finale h2 {
+    font-size: clamp(40px, 10vw, 64px);
+  }
+
+  .expedition-finale .expedition-cta {
+    margin-inline: auto;
+  }
+
+  .finale-hello {
+    margin-bottom: 10px;
+  }
+}
+
+/* Fullscreen layouts must also escape the large-display page cap. */
+main.fullscreen-film-page {
+  max-width: none;
+  width: 100%;
+  margin-inline: 0;
+}
+
+/* Final spacing pass: keep labels separate from moving titles. */
+.expedition-editorial {
+  top: 175px;
+}
+
+.expedition-editorial h2 {
+  font-size: clamp(48px, 6.5vw, 108px);
+}
+
+.expedition-top {
+  top: 120px;
+}
+
+.expertise-sticky {
+  padding-top: 120px;
+}
+
+.expertise-description {
+  top: 125px;
+}
+
+@media (min-width: 701px) {
+  .expertise-position {
+    width: 21.5vw;
+    max-width: none;
+    margin-left: -10.75vw;
+    height: clamp(360px, 47vh, 550px);
+  }
+
+  .expertise-deck {
+    top: 43%;
+    height: 50vh;
+  }
+
+  .expertise-card-top {
+    font-size: clamp(20px, 1.6vw, 32px);
+  }
+
+  .expertise-card-description {
+    font-size: clamp(12px, 0.9vw, 18px);
+  }
+
+  .expertise-list > span {
+    font-size: clamp(11px, 0.85vw, 17px);
+    padding: clamp(7px, 1vh, 14px) 0;
+  }
+
+  .card-face {
+    padding: clamp(20px, 1.8vw, 36px);
+  }
+
+  .expertise-heading h2 {
+    font-size: clamp(52px, 5.4vw, 95px);
+  }
+}
+
+@media (max-width: 700px) {
+  .expedition-editorial {
+    top: 150px;
+  }
+
+  .expedition-top {
+    top: 100px;
+  }
+
+  .expertise-sticky {
+    padding-top: 0;
+  }
+
+  .expertise-description {
+    top: auto;
+  }
+}
