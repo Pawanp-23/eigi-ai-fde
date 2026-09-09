@@ -1,0 +1,10 @@
+services:
+  vaani-ui-school:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cliniq360/vaani-ui-school:${IMAGE_TAG}
+    container_name: vaani-ui-school
+    ports:
+      - "3002:83"
+    restart: "on-failure"

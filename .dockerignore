@@ -1,0 +1,29 @@
+# Dependencies and build output are produced inside the image.
+node_modules
+dist
+coverage
+
+# Version control and CI metadata
+.git
+.gitattributes
+.gitignore
+.github
+
+# Docker files are not needed inside the build context
+Dockerfile
+.dockerignore
+docker-compose.yml
+docker-compose-prod.yml
+
+# Documentation and agent guides
+docs
+*.md
+
+# Local environment, tooling, and editor state
+.env*
+*.tsbuildinfo
+.DS_Store
+*.pem
+npm-debug.log*
+.vscode
+.idea
