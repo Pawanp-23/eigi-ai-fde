@@ -134,7 +134,7 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
         <p className="eyebrow">HUMAN INGENUITY. SHARED AMBITION.</p>
         <h2 id="eigi-team-heading">
           Creative{' '}
-          <span>
+          <span className="team-brand-type">
             Eigi_ai
             <svg
               aria-hidden="true"
@@ -216,7 +216,7 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
         </p>
         <span className="eigi-statement-credit">THE EIGI_AI APPROACH</span>
         <a
-          href="mailto:pawanpatil2305@gmail.com?subject=Let%E2%80%99s%20build%20with%20Eigi_ai"
+          href="mailto:buddy@eigi.ai?subject=Let%E2%80%99s%20build%20with%20Eigi_ai"
           className="pill dark"
         >
           LET’S BUILD TOGETHER <ArrowUpRight size={17} />

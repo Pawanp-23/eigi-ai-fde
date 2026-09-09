@@ -42,7 +42,7 @@ import SignalHero from './sections/HeroSection/signal-hero';
 import { ParallaxComponent } from './sections/ParallaxSection';
 
 const contact =
-  'mailto:pawanpatil2305@gmail.com?subject=Let%E2%80%99s%20build%20with%20eigi_ai';
+  'mailto:buddy@eigi.ai?subject=Let%E2%80%99s%20build%20with%20eigi_ai';
 
 const capabilities = [
   {
@@ -608,7 +608,7 @@ export default function Home() {
           </p>
           <a
             className="pill dark"
-            href="mailto:pawanpatil2305@gmail.com?subject=Opportunities%20at%20Eigi.ai"
+            href="mailto:buddy@eigi.ai?subject=Opportunities%20at%20Eigi.ai"
           >
             START A CONVERSATION <ArrowUpRight size={18} />
           </a>
@@ -638,7 +638,7 @@ export default function Home() {
               className="email-link"
               href={contact}
             >
-              pawanpatil2305@gmail.com <ArrowUpRight size={20} />
+              buddy@eigi.ai <ArrowUpRight size={20} />
             </a>
           </div>
           <a
@@ -664,11 +664,19 @@ export default function Home() {
       >
         <SheetContent
           finalFocus={() => (pendingSection.current ? false : undefined)}
-          className="navigation-sheet"
+          className="navigation-sheet navigation-refined"
           showCloseButton={false}
         >
           <div className="sheet-top">
-            <SheetTitle className="wordmark">eigi_ai</SheetTitle>
+            <SheetTitle className="wordmark menu-brand">
+              <img
+                src="/eigi-logo.ico"
+                alt=""
+                width={36}
+                height={36}
+              />
+              eigi.ai
+            </SheetTitle>
             <button
               className="pill"
               onClick={() => setMenu(false)}
@@ -679,6 +687,14 @@ export default function Home() {
           <SheetDescription className="sr-only">
             Explore eigi_ai forward deployed engineering.
           </SheetDescription>
+          <div className="menu-intro">
+            <span>EXPLORE EIGI</span>
+            <p>
+              Ambition meets
+              <br />
+              execution.
+            </p>
+          </div>
           <nav aria-label="Expanded navigation">
             {[
               ['01', 'Home', '#top'],
@@ -687,6 +703,7 @@ export default function Home() {
               ['04', 'Possibilities', '#capabilities'],
               ['05', 'Expertise', '#expertise'],
               ['06', 'The experience', '#experience'],
+              ['07', 'Opportunities', '#opportunities'],
             ].map(([n, label, href]) => (
               <a
                 href={href}
@@ -698,7 +715,7 @@ export default function Home() {
                 }}
               >
                 <span>{n}</span>
-                {label}
+                <strong>{label}</strong>
                 <ArrowUpRight />
               </a>
             ))}

@@ -218,3 +218,135 @@
     background: #111214e8;
   }
 }
+.navigation-refined {
+  width: min(640px, 100vw) !important;
+  max-width: 100vw !important;
+  padding: 32px 40px !important;
+  overflow-y: auto;
+  background: var(--surface) !important;
+}
+.navigation-refined .sheet-top {
+  align-items: center;
+  gap: 20px;
+}
+.navigation-refined .menu-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+  letter-spacing: -0.05em;
+}
+.menu-brand img {
+  border-radius: 7px;
+}
+.menu-intro {
+  padding: 36px 0 22px;
+}
+.menu-intro > span {
+  font:
+    10px var(--font-geist-mono),
+    monospace;
+  letter-spacing: 0.14em;
+  color: var(--text-secondary);
+}
+.menu-intro p {
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -0.045em;
+  line-height: 1.07;
+  margin: 14px 0 0;
+}
+.navigation-refined nav {
+  margin: 0 !important;
+}
+.navigation-refined nav > a {
+  display: grid;
+  grid-template-columns: 28px 1fr 28px;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 8px !important;
+  font-size: clamp(23px, 2.3vw, 32px) !important;
+  letter-spacing: -0.035em !important;
+  border-bottom: 1px solid var(--line);
+  transition:
+    background 0.25s,
+    color 0.25s;
+  border-radius: 8px 8px 0 0;
+}
+.navigation-refined nav > a > span {
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+.navigation-refined nav > a > strong {
+  font-weight: 450;
+  transition: transform 0.25s;
+}
+.navigation-refined nav > a > svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s;
+}
+.navigation-refined nav > a:hover,
+.navigation-refined nav > a:focus-visible {
+  background: var(--surface-soft);
+  color: var(--blue);
+}
+.navigation-refined nav > a:hover > strong {
+  transform: translateX(5px);
+}
+.navigation-refined nav > a:hover > svg {
+  transform: translate(2px, -2px);
+}
+.navigation-refined .sheet-email {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px !important;
+  margin-top: 28px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-soft);
+  font-size: 24px;
+  letter-spacing: -0.03em;
+}
+.navigation-refined .sheet-email small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
+#eigi-team-heading {
+  font-size: clamp(34px, 4.8vw, 68px);
+  font-weight: 450;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+#eigi-team-heading .team-brand-type {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+@media (max-width: 700px) {
+  .navigation-refined {
+    padding: 24px !important;
+  }
+  .menu-intro {
+    padding-top: 26px;
+  }
+  .navigation-refined nav > a {
+    padding-block: 13px !important;
+  }
+  .navigation-refined .sheet-email {
+    font-size: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .navigation-refined nav > a,
+  .navigation-refined nav > a > strong,
+  .navigation-refined nav > a > svg {
+    transition: none;
+  }
+}
