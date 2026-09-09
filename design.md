@@ -12,11 +12,11 @@ The core promise is close collaboration from discovery through delivery. Describ
 
 The local default now uses the interactive pixel hero with light/dark themes. The video-backed mission hero is retained at `?hero=video`; the published site has not been updated. The original landscape is available with `?hero=original`. A new engineering hero and selected copy changes are available as an opt-in local preview. This draft has not been published.
 
-| Version | Local URL |
-| --- | --- |
-| New engineering hero and revised copy | `http://localhost:3000/?preview=hero` |
-| Previous landscape hero and original copy | `http://localhost:3000/?preview=hero&hero=original` |
-| Default website | `http://localhost:3000/` |
+| Version                                   | Local URL                                           |
+| ----------------------------------------- | --------------------------------------------------- |
+| New engineering hero and revised copy     | `http://localhost:5173/?preview=hero`               |
+| Previous landscape hero and original copy | `http://localhost:5173/?preview=hero&hero=original` |
+| Default website                           | `http://localhost:5173/`                            |
 
 The comparison control appears only when `preview=hero` is present. Switching versions reloads the page. Query parameters are read after client hydration, so the original hero can appear briefly before the preview loads.
 
@@ -32,19 +32,19 @@ The published site is https://eigi-ai-studio.pawanpatil2305.chatgpt.site/.
 
 ## Visual system
 
-| Element | Treatment |
-| --- | --- |
-| Main typeface | Geist Sans |
-| Technical labels | Small uppercase text with controlled tracking; Geist Mono where used by existing sections |
-| Hero background | Near-black `#0b0d0e` |
-| Hero primary text | Off-white `#f4f4f1` |
-| Hero supporting text | Muted gray, approximately `#a9aeb3` |
-| Grid and separators | White at roughly 7.5% opacity |
-| Connections | Warm gray and pale gold highlights |
-| Existing light sections | Pale background `#f1f1f7`, dark text `#14151a` |
-| Existing accent | Electric blue `#2539ff`, with lavender and teal in the 3D experience |
-| Controls | Compact rounded rectangles; existing sections retain their pill controls |
-| Icons | Lucide, consistent thin strokes |
+| Element                 | Treatment                                                                                 |
+| ----------------------- | ----------------------------------------------------------------------------------------- |
+| Main typeface           | Geist Sans                                                                                |
+| Technical labels        | Small uppercase text with controlled tracking; Geist Mono where used by existing sections |
+| Hero background         | Near-black `#0b0d0e`                                                                      |
+| Hero primary text       | Off-white `#f4f4f1`                                                                       |
+| Hero supporting text    | Muted gray, approximately `#a9aeb3`                                                       |
+| Grid and separators     | White at roughly 7.5% opacity                                                             |
+| Connections             | Warm gray and pale gold highlights                                                        |
+| Existing light sections | Pale background `#f1f1f7`, dark text `#14151a`                                            |
+| Existing accent         | Electric blue `#2539ff`, with lavender and teal in the 3D experience                      |
+| Controls                | Compact rounded rectangles; existing sections retain their pill controls                  |
+| Icons                   | Lucide, consistent thin strokes                                                           |
 
 Use clear headings, short paragraphs, and restrained labels. Avoid dense paragraphs, redundant slogans, or decorative badges that imply verified production status.
 
@@ -72,13 +72,13 @@ Desktop supporting statement: **Built for the future. Available today.** This st
 
 ### Engineering diagram
 
-| Challenges | Engineering core | Outcomes |
-| --- | --- | --- |
-| Idea | Engineers, embedded | AI product |
-| Data | Eigi_ai | Automation |
-| Workflow | Turning complexity into progress | Platform |
-| Existing system | | Working system |
-| Hard problem | | |
+| Challenges      | Engineering core                 | Outcomes       |
+| --------------- | -------------------------------- | -------------- |
+| Idea            | Engineers, embedded              | AI product     |
+| Data            | Eigi_ai                          | Automation     |
+| Workflow        | Turning complexity into progress | Platform       |
+| Existing system |                                  | Working system |
+| Hard problem    |                                  |                |
 
 The core uses layered translucent HTML/CSS planes with perspective and a slow rotation. It is a lightweight CSS 3D illustration, not a photorealistic WebGL glass model. SVG curves carry subtle moving light segments between the cards and core.
 
@@ -88,18 +88,18 @@ Closing line: **Engineers on your team. From day one.**
 
 ## Page structure and copy placement
 
-| Section | Purpose | Preview wording |
-| --- | --- | --- |
-| Engineering hero | Explain the service and invite contact | Your hardest problems. Our engineers, deployed. |
-| Our approach | Connect client ambition to implementation | The space between ambition and execution. |
-| Disciplines | Explain the skills behind the work | Human ingenuity. |
-| Possibilities | Show illustrative systems and their workflows | Knowledge, connected. / Operations, reimagined. |
-| Expertise | Explain discovery, integration, engineering, and deployment | Areas of expertise. |
-| Method | Explain collaboration through delivery | Turn your vision into reality that runs your business. |
-| 3D experience introduction | Introduce the tablet-to-world journey | Give your big idea the website it deserves. |
-| 3D experience | Orbit, tunnel, and closing invitation | Existing storytelling preserved |
-| Eigi_ai team section | Present engineering disciplines | Illustrative portraits, not staff profiles |
-| Contact | Provide a direct next step | Have a challenge in mind? |
+| Section                    | Purpose                                                     | Preview wording                                        |
+| -------------------------- | ----------------------------------------------------------- | ------------------------------------------------------ |
+| Engineering hero           | Explain the service and invite contact                      | Your hardest problems. Our engineers, deployed.        |
+| Our approach               | Connect client ambition to implementation                   | The space between ambition and execution.              |
+| Disciplines                | Explain the skills behind the work                          | Human ingenuity.                                       |
+| Possibilities              | Show illustrative systems and their workflows               | Knowledge, connected. / Operations, reimagined.        |
+| Expertise                  | Explain discovery, integration, engineering, and deployment | Areas of expertise.                                    |
+| Method                     | Explain collaboration through delivery                      | Turn your vision into reality that runs your business. |
+| 3D experience introduction | Introduce the tablet-to-world journey                       | Give your big idea the website it deserves.            |
+| 3D experience              | Orbit, tunnel, and closing invitation                       | Existing storytelling preserved                        |
+| Eigi_ai team section       | Present engineering disciplines                             | Illustrative portraits, not staff profiles             |
+| Contact                    | Provide a direct next step                                  | Have a challenge in mind?                              |
 
 The website-specific phrase belongs in the tablet introduction. Eigi_ai's overall service remains broader than website development.
 
@@ -145,22 +145,22 @@ Character reveals use staggered opacity and vertical movement. Reading windows s
 
 ## Implementation map
 
-| File | Responsibility |
-| --- | --- |
-| `app/page.tsx` | Page composition, preview selection, navigation, section copy, contact actions |
-| `app/engineering-hero.tsx` | Experimental engineering hero and diagram |
-| `app/engineering-hero.css` | Scoped hero styles, responsive rules, CSS motion, comparison control |
-| `app/hero-punchline.tsx` | Original hero's four punchlines |
-| `app/hero-punchline.css` | Original hero typography and chapter presentation |
-| `app/motion.jsx` | Shared page motion, original hero progression, text effects |
-| `app/frontier` and related scene modules | Existing 3D landscape and holographic rendering |
-| `app/studio-sections` | Disciplines, capability marquee, expertise presentation |
-| `app/scroll-detail.jsx` | Scroll word reveals and SVG ribbons |
-| `app/expedition.jsx` | Tablet, orbit, tunnel, and finale sequence |
-| `components/ui/team.tsx` | Illustrative discipline portraits |
-| `app/layout.tsx` | Fonts, metadata, stylesheet imports |
+| File                                                | Responsibility                                                                 |
+| --------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `src/pages/LandingPage.tsx`                         | Page composition, preview selection, navigation, section copy, contact actions |
+| `src/components/engineering-hero.tsx`               | Experimental engineering hero and diagram                                      |
+| `src/theme/engineering-hero.css`                    | Scoped hero styles, responsive rules, CSS motion, comparison control           |
+| `src/components/hero-punchline.tsx`                 | Original hero's four punchlines                                                |
+| `src/theme/hero-punchline.css`                      | Original hero typography and chapter presentation                              |
+| `src/components/motion.jsx`                         | Shared page motion, original hero progression, text effects                    |
+| `src/components/frontier` and related scene modules | Existing 3D landscape and holographic rendering                                |
+| `src/components/studio-sections`                    | Disciplines, capability marquee, expertise presentation                        |
+| `src/components/scroll-detail.jsx`                  | Scroll word reveals and SVG ribbons                                            |
+| `src/components/expedition.jsx`                     | Tablet, orbit, tunnel, and finale sequence                                     |
+| `src/components/ui/team.tsx`                        | Illustrative discipline portraits                                              |
+| `src/main.tsx`                                      | Application mount and stylesheet imports                                       |
 
-The app uses React, TypeScript, Vinext/Vite, Three.js, Motion, Tailwind, and Lucide. Follow the existing stack; the new hero adds no dependency.
+The app uses React, TypeScript, Vite, Three.js, Motion, Tailwind, and Lucide. Follow the existing stack; the new hero adds no dependency.
 
 ## Local review and rollback
 
@@ -186,7 +186,6 @@ For an immediate visual rollback, select **Previous hero** or remove the preview
 
 Before publishing, review the complete page on physical mobile hardware, confirm section transitions and focus behavior, and obtain approval for the new direction. Publishing and pushing this draft are separate from local preview work.
 
-
 ## Video mission hero — 7 September 2026
 
 The local default hero keeps the four character-reveal punchlines and replaces its landscape background with two silent clips. Engineers play first. Scroll progress from 38% to 54% crossfades to PAL; reverse scrolling restores the engineers clip. Playback runs at native speed rather than seeking on every scroll event.
@@ -196,22 +195,19 @@ The local default hero keeps the four character-reveal punchlines and replaces i
 - No 90 fps claim: both sources are approximately 24 fps. Display refresh and animation frame rates depend on the device.
 - MP4 fast-start enabled; JPEG posters included. Second clip uses metadata preloading and begins playback before its reveal.
 - Shared pause, reduced-motion preference, offscreen detection, and tab visibility control playback. Poster imagery remains if autoplay is unavailable.
-- New files: `app/hero-video.tsx`, `app/hero-video.css`, and `public/media/`.
-- Local preview: `http://localhost:3000/`. Landscape comparison: `http://localhost:3000/?hero=original`.
+- New files: `src/components/hero-video.tsx`, `src/theme/hero-video.css`, and `public/media/`.
+- Local preview: `http://localhost:5173/`. Landscape comparison: `http://localhost:5173/?hero=original`.
 - This update is prepared locally; deployment is a separate action.
-
 
 ### 4K quality revision
 
 The active hero now references `engineers-4k.mp4` and `pal-hero-4k.mp4`. PAL preserves the original 3840×2160 video stream without video re-encoding; only audio is removed and MP4 fast-start metadata is added. Engineers is upscaled from 1920×1080 to 3840×2160 with Lanczos and encoded as H.264 at CRF 17, slow preset. This is an upscale, not native 4K detail. Native frame rates remain unchanged. New posters are also 4K. The saturation filter is removed to preserve the footage's colors; readability overlays remain. Earlier 1080p exports remain in the folder but are not selected by the hero. Larger media requires checking the hosting platform's per-file limit or serving video from suitable media storage before deployment.
-
 
 ## Executive feedback refinement
 
 A shared paper/charcoal/slate-blue palette replaces competing teal, pink, yellow, and purple accents. Original 4K video files are unchanged. Header and primary sections share a 5% desktop gutter; capability cards align along a common top edge.
 
 Capability text bands are static. Portrait motion starts paused and remains user-controlled. Character/word travel is shorter. Expertise cards use time-based damping, smaller tilt and hover lift, and a single scroll-drawn ribbon; pause/reduced motion exposes readable card fronts. The 3D experience retains its narrative but reduces ambient speed, camera roll, field-of-view change, speed effects, and neon lighting.
-
 
 ## Current preview: single film, glass navigation, greeting
 
@@ -227,4 +223,4 @@ Current polish revision: the original astronaut is retained for the entire journ
 
 ## September 8 handoff
 
-The default page now includes AI capability card morphing, a skills ribbon, neutral expertise surfaces, and bounded parallax. Section styles are under `app/styles/`; the import order in `app/layout.tsx` remains unchanged. Historical implementation notes above describe retained variants as well as the earlier design. See `docs/production.md` for current deployment and validation details.
+The default page now includes AI capability card morphing, a skills ribbon, neutral expertise surfaces, and bounded parallax. Section styles are under `src/theme/`; the import order in `src/main.tsx` remains unchanged. Historical implementation notes above describe retained variants as well as the earlier design. See `PRODUCTION.md` for current deployment and validation details.
