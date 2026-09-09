@@ -5,8 +5,6 @@ import {
   ArrowUpRight,
   ArrowDown,
   Plus,
-  Pause,
-  Play,
   X,
   MoveUpRight,
   Sun,
@@ -219,7 +217,7 @@ export default function Home() {
         <EngineeringHero
           contact={contact}
           paused={paused}
-          onPause={() => setPaused(!paused)}
+
           onMenu={() => setMenu(true)}
         />
       ) : (
@@ -251,7 +249,6 @@ export default function Home() {
                 <a href="#method">Our FDE</a>
                 <a href="#approach">FDE Goals</a>
                 <a href="#contact">Contact Us</a>
-                <a href="#opportunities">Opportunities</a>
               </div>
               <button
                 className="theme-control"
@@ -262,14 +259,6 @@ export default function Home() {
                 title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
               >
                 {dark ? <Sun size={19} /> : <Moon size={19} />}
-              </button>
-              <button
-                className="motion-control"
-                onClick={() => setPaused(!paused)}
-                aria-label={paused ? 'Play animations' : 'Pause animations'}
-                aria-pressed={paused}
-              >
-                {paused ? <Play size={15} /> : <Pause size={15} />}
               </button>
               <a
                 className="pill dark"
@@ -589,31 +578,6 @@ export default function Home() {
         contact={contact}
       />
       <EigiTeam paused={paused} />
-      <section
-        id="opportunities"
-        className="opportunities section-pad"
-      >
-        <div>
-          <p className="eyebrow">OPPORTUNITIES / BUILD WITH EIGI</p>
-          <h2>
-            Make your next
-            <br />
-            chapter matter.
-          </h2>
-        </div>
-        <div>
-          <p>
-            Interested in building useful AI with us? Tell us about your work,
-            your interests, and where you could contribute.
-          </p>
-          <a
-            className="pill dark"
-            href="mailto:buddy@eigi.ai?subject=Opportunities%20at%20Eigi.ai"
-          >
-            START A CONVERSATION <ArrowUpRight size={18} />
-          </a>
-        </div>
-      </section>
       <footer
         id="contact"
         className="footer"
@@ -703,7 +667,6 @@ export default function Home() {
               ['04', 'Possibilities', '#capabilities'],
               ['05', 'Expertise', '#expertise'],
               ['06', 'The experience', '#experience'],
-              ['07', 'Opportunities', '#opportunities'],
             ].map(([n, label, href]) => (
               <a
                 href={href}

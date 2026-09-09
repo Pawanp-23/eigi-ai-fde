@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, Pause, Play, UsersRound } from 'lucide-react';
+import { ArrowUpRight, UsersRound } from 'lucide-react';
 import { Marquee } from '@/components/ui/marquee';
 
 // Template portraits illustrate disciplines until verified team profiles are supplied.
@@ -93,7 +93,6 @@ function DisciplineCard({
 
 export default function EigiTeam({ paused = false }: { paused?: boolean }) {
   const reduced = useReducedMotion();
-  const [localPaused, setLocalPaused] = useState(true);
 
   return (
     <section
@@ -164,26 +163,9 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
       <div className="eigi-team-gallery">
         <div className="eigi-team-gallery-top">
           <span>THE DISCIPLINES / 06</span>
-          <button
-            className="eigi-team-motion"
-            type="button"
-            disabled={paused}
-            aria-pressed={paused || localPaused}
-            aria-label={
-              paused
-                ? 'Portrait motion paused globally'
-                : localPaused
-                  ? 'Resume portrait motion'
-                  : 'Pause portrait motion'
-            }
-            onClick={() => setLocalPaused((value) => !value)}
-          >
-            {paused || localPaused ? <Play size={13} /> : <Pause size={13} />}
-            <span>{paused ? 'PAUSED' : localPaused ? 'RESUME' : 'PAUSE'}</span>
-          </button>
         </div>
         <Marquee
-          paused={paused || localPaused || !!reduced}
+          paused={paused || !!reduced}
           pauseOnHover
         >
           {disciplines.map((item, index) => (

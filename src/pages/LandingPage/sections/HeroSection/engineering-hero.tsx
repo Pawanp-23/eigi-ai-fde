@@ -12,8 +12,6 @@ import {
   Settings,
   Box,
   ChartNoAxesColumn,
-  Pause,
-  Play,
 } from 'lucide-react';
 
 const inputs = [
@@ -34,12 +32,10 @@ const outputs = [
 export default function EngineeringHero({
   contact,
   paused,
-  onPause,
   onMenu,
 }: {
   contact: string;
   paused: boolean;
-  onPause: () => void;
   onMenu: () => void;
 }) {
   return (
@@ -61,13 +57,6 @@ export default function EngineeringHero({
           <a href="#experience">Experience</a>
         </nav>
         <div className="engineering-actions">
-          <button
-            onClick={onPause}
-            aria-label={paused ? 'Play animations' : 'Pause animations'}
-            aria-pressed={paused}
-          >
-            {paused ? <Play size={15} /> : <Pause size={15} />}
-          </button>
           <a href={contact}>
             Talk to us <ArrowUpRight size={15} />
           </a>
