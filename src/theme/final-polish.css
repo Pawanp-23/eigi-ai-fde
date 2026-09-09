@@ -1,0 +1,220 @@
+/* Neutral surfaces for the two card experiences. */
+.expertise {
+  background: #f7f7f7;
+  color: #181818;
+}
+
+.expertise .expertise-description {
+  color: #626262;
+}
+
+.expertise .scroll-ribbon {
+  stroke: #a4a4a4;
+}
+
+.expertise .card-front {
+  background: #fff;
+  color: #191919;
+  border: 1px solid #d6d6d6;
+  box-shadow: 0 15px 32px #0000000b;
+}
+
+.expertise .card-back,
+.expertise .card-back-symbol {
+  background: #191919;
+  color: #f7f7f7;
+}
+
+.expertise .expertise-card-description {
+  color: #626262;
+}
+
+.expertise .expertise-list > span {
+  border-color: #d5d5d5;
+}
+
+.expertise .expertise-card {
+  filter: drop-shadow(0 12px 16px #00000009);
+}
+
+[data-theme='dark'] .expertise {
+  background: #0d0d0d;
+  color: #f2f2f2;
+}
+
+[data-theme='dark'] .expertise .expertise-description {
+  color: #b9b9b9;
+}
+
+[data-theme='dark'] .expertise .scroll-ribbon {
+  stroke: #666;
+}
+
+[data-theme='dark'] .expertise .card-front {
+  background: #f3f3f3;
+  color: #181818;
+  border-color: #ccc;
+}
+
+[data-theme='dark'] .expertise .expertise-card-description {
+  color: #555;
+}
+
+.ai-morph-stage {
+  background:
+    radial-gradient(ellipse at 35% 65%, #00000004, transparent 60%), #fafafa;
+  color: #191919;
+}
+
+.ai-morph-section {
+  background: #fafafa;
+}
+
+.ai-morph-card {
+  background: #fff;
+  color: #191919;
+  border-color: #d6d6d6;
+  box-shadow: 0 12px 30px #0000000c;
+}
+
+.ai-morph-card > svg {
+  color: #555;
+}
+
+.ai-morph-position {
+  width: 126px;
+  height: 164px;
+}
+
+.ai-card-name {
+  font-size: 14px;
+}
+
+.ai-card-number {
+  font-size: 10px;
+}
+
+.ai-morph-card > svg {
+  width: 40px;
+  height: 40px;
+}
+
+.ai-morph-card:hover,
+.ai-morph-card[aria-pressed='true'] {
+  background: #f1f1f1;
+  border-color: #6d6d6d;
+  box-shadow: 0 18px 40px #00000013;
+}
+
+.ai-morph-card:focus-visible {
+  outline-color: #777;
+}
+
+.ai-morph-live .ai-morph-card {
+  animation: ai-gentle-float 7s ease-in-out infinite;
+}
+
+.ai-morph-position:nth-child(2n) .ai-morph-card {
+  animation-delay: -2.4s;
+  animation-duration: 8s;
+}
+
+.ai-morph-position:nth-child(3n) .ai-morph-card {
+  animation-delay: -4.7s;
+  animation-duration: 9s;
+}
+
+@keyframes ai-gentle-float {
+  0%,
+  100% {
+    transform: translateY(-4px);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.ai-morph-position:focus-within {
+  z-index: 8 !important;
+}
+
+.ai-morph-card:hover,
+.ai-morph-card:focus-visible {
+  animation-play-state: paused;
+}
+
+[data-theme='dark'] .ai-morph-section,
+[data-theme='dark'] .ai-morph-stage {
+  background: #0d0d0d;
+  color: #f2f2f2;
+}
+
+[data-theme='dark'] .ai-morph-card {
+  background: #202020;
+  color: #f2f2f2;
+  border-color: #454545;
+}
+
+[data-theme='dark'] .ai-morph-card > svg {
+  color: #ddd;
+}
+
+[data-theme='dark'] .ai-morph-card:hover,
+[data-theme='dark'] .ai-morph-card[aria-pressed='true'] {
+  background: #303030;
+  border-color: #999;
+}
+
+.ai-morph-still .ai-morph-card {
+  animation: none;
+}
+
+@media (max-width: 800px) {
+  .ai-morph-position {
+    width: 74px;
+    height: 100px;
+  }
+
+  .ai-card-name {
+    font-size: 10px;
+  }
+
+  .ai-card-number {
+    font-size: 8px;
+  }
+
+  .ai-morph-card > svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .ai-morph-still .ai-morph-position {
+    width: 100%;
+    height: 145px;
+  }
+
+  .ai-morph-still .ai-card-name {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-morph-live .ai-morph-card {
+    animation: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .expertise {
+    padding-top: 145px;
+  }
+
+  .signal-copy {
+    background: #f8f9fbe8;
+  }
+
+  [data-theme='dark'] .signal-copy {
+    background: #111214e8;
+  }
+}
