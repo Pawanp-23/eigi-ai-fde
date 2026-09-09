@@ -1,5 +1,5 @@
 services:
-  vaani-ui-school:
+  vaani-fde:
     build:
       context: .
       dockerfile: Dockerfile
