@@ -69,7 +69,7 @@ Keep credentials in ignored local environment files. Dependencies, generated bui
 - `src/components/signal-hero.tsx` — default pixel hero
 - `public/media/` — active alternate video hero assets
 - `src/theme/archive/media/` — superseded, unimported media preserved with Git LFS and excluded from the build
-- `doc/PRODUCTION.md` — release process, validation status, and remaining limitations
+- `docs/PRODUCTION.md` — release process, validation status, and remaining limitations
 - `.github/workflows/ci.yml` — pull request and main branch validation
 
-See [production handoff](doc/PRODUCTION.md) before deploying. See [design specification](doc/design.md) for design history.
+See [production handoff](docs/PRODUCTION.md) before deploying. See [design specification](docs/design.md) for design history.
