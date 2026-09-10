@@ -299,7 +299,7 @@ export default function Home() {
                 )}
                 <div className="hero-shade" />
                 <p className="scene-eyebrow">
-                  <span className="status-dot" /> FORWARD DEPLOYED ENGINEERING
+                  <span className="status-dot" /> FORWARD DEPLOYED ENGINEER
                 </p>
                 <HeroPunchline />
                 <div className="hero-bottom">
@@ -622,7 +622,7 @@ export default function Home() {
             © {new Date().getFullYear()}{' '}
             <span className="brand-type">eigi_ai</span>
           </span>
-          <span>FORWARD DEPLOYED ENGINEERING</span>
+          <span>FORWARD DEPLOYED ENGINEER</span>
         </div>
       </footer>
       <Sheet
@@ -653,7 +653,7 @@ export default function Home() {
             </button>
           </div>
           <SheetDescription className="sr-only">
-            Explore eigi_ai forward deployed engineering.
+            Explore eigi_ai forward deployed engineer.
           </SheetDescription>
           <div className="menu-intro">
             <span>EXPLORE EIGI</span>

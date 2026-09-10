@@ -9,7 +9,7 @@ import {
 
 const questions = [
   {
-    question: 'What is forward deployed engineering?',
+    question: 'What is forward deployed engineer?',
     answer:
       'Forward deployed engineers work closely with your team where the problem happens. We learn your workflows, connect the relevant data and tools, and build AI systems around the people who will use them.',
   },

@@ -41,7 +41,7 @@ export default function EngineeringHero({
   return (
     <section
       className={`engineering-shell ${paused ? 'engineering-paused' : ''}`}
-      aria-label="Forward deployed engineering"
+      aria-label="Forward deployed engineer"
     >
       <header className="engineering-nav">
         <a
@@ -72,7 +72,7 @@ export default function EngineeringHero({
       <div className="engineering-body">
         <div className="engineering-intro">
           <div>
-            <p className="engineering-kicker">FORWARD DEPLOYED ENGINEERING</p>
+            <p className="engineering-kicker">FORWARD DEPLOYED ENGINEER</p>
             <h1>
               Your hardest problems.
               <br />
