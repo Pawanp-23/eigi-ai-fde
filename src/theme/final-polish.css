@@ -1084,3 +1084,10 @@ html:has(.navigation-refined[data-open]) {
   scrollbar-gutter: auto !important;
   background-color: var(--surface) !important;
 }
+
+/* Preserve the portrait reveal for hover, keyboard focus, and touch. */
+.eigi-team-card:hover img,
+.eigi-team-card:focus img,
+.eigi-team-card[data-color='true'] img {
+  filter: grayscale(0);
+}

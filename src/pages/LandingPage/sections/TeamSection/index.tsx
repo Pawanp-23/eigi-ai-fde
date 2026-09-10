@@ -48,16 +48,21 @@ const disciplines = [
 function DisciplineCard({
   item,
   index,
+  decorative = false,
 }: {
   item: (typeof disciplines)[number];
   index: number;
+  decorative?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
+  const [color, setColor] = useState(false);
 
   return (
     <article
       className="eigi-team-card"
-      tabIndex={0}
+      tabIndex={decorative ? undefined : 0}
+      data-color={color}
+      onPointerDown={() => setColor((value) => !value)}
       aria-label={`${item.name}. ${item.role}. Illustrative portrait.`}
     >
       <div className="eigi-team-portrait">
@@ -157,6 +162,14 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
           <span>THE DISCIPLINES / 06</span>
         </div>
         <Marquee
+          duplicateChildren={disciplines.map((item, index) => (
+            <DisciplineCard
+              key={item.name}
+              item={item}
+              index={index}
+              decorative
+            />
+          ))}
           paused={paused || !!reduced}
           pauseOnHover
         >

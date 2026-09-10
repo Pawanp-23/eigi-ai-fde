@@ -253,7 +253,7 @@ body {
 
 .eigi-team-card:hover img,
 .eigi-team-card:focus-visible img {
-  filter: grayscale(1);
+  filter: grayscale(0);
   transform: scale(1.015);
 }
 

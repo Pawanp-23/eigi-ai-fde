@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 
 type MarqueeProps = {
   children: ReactNode;
+  duplicateChildren?: ReactNode;
   className?: string;
   paused?: boolean;
   pauseOnHover?: boolean;
@@ -12,6 +13,7 @@ type MarqueeProps = {
 
 export function Marquee({
   children,
+  duplicateChildren,
   className,
   paused = false,
   pauseOnHover = true,
@@ -47,9 +49,9 @@ export function Marquee({
         <div
           className="eigi-marquee-group eigi-marquee-copy"
           aria-hidden="true"
-          inert
+          inert={duplicateChildren ? undefined : true}
         >
-          {children}
+          {duplicateChildren ?? children}
         </div>
       </div>
     </div>
