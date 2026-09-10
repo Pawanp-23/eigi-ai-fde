@@ -140,23 +140,7 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
         </div>
         <p className="eyebrow">HUMAN INGENUITY. SHARED AMBITION.</p>
         <h2 id="eigi-team-heading">
-          Creative{' '}
-          <span className="team-brand-type">
-            Eigi_ai
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 240 24"
-              fill="none"
-            >
-              <path
-                d="M4 16C62 4 157 2 235 10M29 22C91 12 166 13 211 17"
-                stroke="currentColor"
-                strokeWidth="5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>{' '}
-          minds.
+          Creative <span className="team-brand-type">eigi_ai</span> minds.
         </h2>
         <p className="eigi-team-description">
           <span className="brand-type">Eigi_ai</span> brings engineering,

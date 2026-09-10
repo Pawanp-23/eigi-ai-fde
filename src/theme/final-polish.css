@@ -325,9 +325,9 @@
 #eigi-team-heading .team-brand-type {
   display: inline-block;
   white-space: nowrap;
-  font-family: inherit;
-  font-weight: 600;
-  letter-spacing: -0.045em;
+  font-family: 'Aldrich', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.035em;
 }
 @media (max-width: 700px) {
   .navigation-refined {
@@ -585,5 +585,325 @@
     right: 18px;
     width: 44px;
     height: 44px;
+  }
+}
+/* Dimensional AI product previews, with readable workflow details. */
+.ai-project-preview {
+  position: absolute;
+  inset: 54px 22px 122px;
+  perspective: 1000px;
+  display: grid;
+  place-items: center;
+}
+.ai-product-window {
+  position: relative;
+  width: min(100%, 410px);
+  color: #172033;
+  background: #f6f8ff;
+  border: 1px solid #d7e0ff;
+  border-radius: 13px;
+  box-shadow:
+    0 12px 0 -5px #8492ba,
+    0 24px 0 -12px #50618d,
+    0 35px 55px #0005;
+  transform: rotateX(9deg) rotateY(-11deg) rotateZ(-3deg);
+  animation: ai-product-float 8s ease-in-out infinite;
+  text-align: left;
+}
+.card-1 .ai-product-window {
+  animation-delay: -4s;
+}
+.ai-window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #dce2f0;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: #4c5972;
+}
+.ai-window-dots {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #8793b0;
+}
+.ai-product-content {
+  padding: 18px;
+}
+.ai-source-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ai-source-row > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #d6ddec;
+  background: #fff;
+  border-radius: 5px;
+  padding: 5px 7px;
+  font-size: 10px;
+}
+.ai-chat-question {
+  background: #e3e9ff;
+  margin: 17px 0;
+  padding: 10px 12px;
+  border-radius: 9px 9px 0 9px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.ai-chat-answer {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+}
+.ai-chat-answer > svg {
+  color: #5269d4;
+  flex-shrink: 0;
+}
+.ai-chat-answer > div {
+  flex: 1;
+}
+.ai-chat-answer strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.ai-answer-lines {
+  margin: 10px 0;
+  display: grid;
+  gap: 5px;
+}
+.ai-answer-lines i {
+  height: 4px;
+  border-radius: 2px;
+  background: #c1cbe1;
+  width: 100%;
+}
+.ai-answer-lines i:last-child {
+  width: 65%;
+}
+.ai-source-citation {
+  font-size: 10px;
+  color: #495fa1;
+}
+.ai-workflow-status {
+  margin-top: 16px;
+  border-top: 1px solid #dbe2f1;
+  padding-top: 10px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 10px;
+  color: #546079;
+}
+.ai-status-dot {
+  width: 6px;
+  height: 6px;
+  background: #359682;
+  border-radius: 50%;
+}
+.ai-document-flow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ai-invoice {
+  width: 38%;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #d4daea;
+  border-radius: 4px;
+  display: grid;
+  gap: 7px;
+  box-shadow: 0 5px 13px #243e7020;
+}
+.ai-invoice > svg {
+  color: #6477c5;
+}
+.ai-invoice strong {
+  font-size: 10px;
+}
+.ai-invoice span {
+  font-size: 8px;
+  color: #6b748a;
+}
+.ai-invoice i {
+  display: block;
+  height: 3px;
+  background: #d9dfef;
+}
+.ai-extracted {
+  flex: 1;
+  min-width: 0;
+}
+.ai-extracted > span {
+  font-size: 8px;
+  letter-spacing: 0.06em;
+  color: #64718a;
+}
+.ai-extracted p {
+  font-size: 10px;
+  margin: 10px 0;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #d9e1f2;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.ai-extracted strong {
+  font-weight: 600;
+}
+.ai-review-step {
+  margin-top: 17px;
+  padding: 9px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 5px;
+  background: #e1f1ec;
+  color: #286654;
+  font-size: 11px;
+}
+.ai-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  top: 16%;
+  background: #6588ff;
+  box-shadow: 0 0 15px 4px #7898ff55;
+  animation: ai-document-scan 4s ease-in-out infinite;
+}
+.ai-floating-chip {
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #18213e;
+  color: #edf2ff;
+  border: 1px solid #879ff0;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px #0004;
+  padding: 12px 16px;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  transform: rotate(-4deg);
+  animation: ai-chip-float 6s ease-in-out infinite;
+}
+.ai-project-orbit {
+  position: absolute;
+  width: 85%;
+  height: 65%;
+  border: 1px solid #b4c3ff25;
+  border-radius: 50%;
+  transform: rotate(-20deg);
+}
+@keyframes ai-product-float {
+  0%,
+  100% {
+    transform: translateY(0) rotateX(9deg) rotateY(-11deg) rotateZ(-3deg);
+  }
+  50% {
+    transform: translateY(-8px) rotateX(5deg) rotateY(5deg) rotateZ(1deg);
+  }
+}
+@keyframes ai-chip-float {
+  50% {
+    transform: translateY(-7px) rotate(2deg);
+  }
+}
+@keyframes ai-document-scan {
+  50% {
+    top: 85%;
+  }
+}
+.ai-project-preview.is-still *,
+.motion-paused .ai-project-preview * {
+  animation: none;
+}
+.intro .intro-mission {
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 600;
+  margin: 24px 0 40px;
+  letter-spacing: -0.025em;
+}
+.eigi-team-heading h2 .team-brand-type {
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+@media (max-width: 600px) {
+  .ai-project-preview {
+    inset: 53px 16px 113px;
+  }
+  .ai-product-window {
+    transform: rotateX(5deg) rotateY(-5deg);
+  }
+  .ai-window-bar {
+    padding: 7px 11px;
+    font-size: 8px;
+  }
+  .ai-product-content {
+    padding: 11px;
+  }
+  .ai-chat-question {
+    margin: 9px 0;
+    font-size: 10px;
+    padding: 8px;
+  }
+  .ai-chat-answer strong {
+    font-size: 11px;
+  }
+  .ai-answer-lines {
+    margin: 6px 0;
+  }
+  .ai-source-citation {
+    font-size: 8px;
+  }
+  .ai-workflow-status {
+    margin-top: 9px;
+    padding-top: 7px;
+    font-size: 8px;
+  }
+  .ai-floating-chip {
+    bottom: -14px;
+    padding: 7px 10px;
+    font-size: 8px;
+  }
+  .ai-source-row > span {
+    padding: 3px 4px;
+    font-size: 8px;
+  }
+  .ai-document-flow {
+    gap: 7px;
+  }
+  .ai-invoice {
+    padding: 8px;
+  }
+  .ai-extracted p {
+    font-size: 9px;
+    margin: 7px 0;
+  }
+  .ai-review-step {
+    margin-top: 8px;
+    padding: 6px;
+    font-size: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-project-preview * {
+    animation: none !important;
+  }
+}
+@media (max-width: 600px) {
+  .capability-card .capability-visual {
+    height: 460px;
   }
 }

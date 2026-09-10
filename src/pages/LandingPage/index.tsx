@@ -22,7 +22,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
-import Sculpture from './sections/SculptureSection';
+import AIProjectPreview from './sections/ProjectSection/ai-project-preview';
 import ScrollMorphHero from './sections/HeroSection/scroll-morph-hero';
 import Frontier from './sections/FrontierSection';
 import EigiTeam from './sections/TeamSection';
@@ -404,16 +404,13 @@ export default function Home() {
             </>
           ) : (
             <>
-              <KineticText text="Great AI belongs" />
+              <KineticText text="We Go to Your Client." />
               <br />
-              in the{' '}
-              <span className="blue-text">
-                <KineticText text="real world." />
-              </span>
-              <span className="heading-dot">✳</span>
+              <KineticText text="We Make AI Work." />
             </>
           )}
         </h2>
+        <p className="intro-mission">Dual mission. One impact.</p>
         <div
           className="intro-bottom"
           data-reveal
@@ -476,7 +473,7 @@ export default function Home() {
                 className="capability-visual"
                 data-scroll-shift={i === 0 ? '-65' : '65'}
               >
-                <Sculpture
+                <AIProjectPreview
                   variant={item.variant}
                   paused={paused}
                 />
@@ -625,7 +622,7 @@ export default function Home() {
           </span>
           <span>FORWARD DEPLOYED ENGINEERING</span>
           <span>
-            <a href="/credits.txt">3D ASSET CREDITS ↗</a>
+            <a href="#approach">OUR APPROACH &nearr;</a>
           </span>
         </div>
       </footer>
@@ -673,7 +670,7 @@ export default function Home() {
               ['02', 'Our approach', '#approach'],
               ['03', 'Disciplines', '#collective'],
               ['04', 'Possibilities', '#capabilities'],
-              ['05', 'Expertise', '#expertise'],
+              ['05', 'Expertise', '#eigi-team'],
               ['06', 'The experience', '#experience'],
             ].map(([n, label, href]) => (
               <a
