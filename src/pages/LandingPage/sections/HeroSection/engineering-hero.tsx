@@ -12,8 +12,6 @@ import {
   Settings,
   Box,
   ChartNoAxesColumn,
-  Pause,
-  Play,
 } from 'lucide-react';
 
 const inputs = [
@@ -34,25 +32,24 @@ const outputs = [
 export default function EngineeringHero({
   contact,
   paused,
-  onPause,
   onMenu,
 }: {
   contact: string;
   paused: boolean;
-  onPause: () => void;
   onMenu: () => void;
 }) {
   return (
     <section
       className={`engineering-shell ${paused ? 'engineering-paused' : ''}`}
-      aria-label="Forward deployed engineering"
+      aria-label="Forward deployed engineer"
     >
       <header className="engineering-nav">
         <a
           href="#top"
           className="engineering-logo"
         >
-          eigi_ai<span>/ FDE</span>
+          <span className="brand-type">eigi_ai</span>
+          <span>/ FDE</span>
         </a>
         <nav aria-label="Main navigation">
           <a href="#approach">What we do</a>
@@ -61,13 +58,6 @@ export default function EngineeringHero({
           <a href="#experience">Experience</a>
         </nav>
         <div className="engineering-actions">
-          <button
-            onClick={onPause}
-            aria-label={paused ? 'Play animations' : 'Pause animations'}
-            aria-pressed={paused}
-          >
-            {paused ? <Play size={15} /> : <Pause size={15} />}
-          </button>
           <a href={contact}>
             Talk to us <ArrowUpRight size={15} />
           </a>
@@ -82,7 +72,7 @@ export default function EngineeringHero({
       <div className="engineering-body">
         <div className="engineering-intro">
           <div>
-            <p className="engineering-kicker">FORWARD DEPLOYED ENGINEERING</p>
+            <p className="engineering-kicker">FORWARD DEPLOYED ENGINEER</p>
             <h1>
               Your hardest problems.
               <br />
@@ -192,7 +182,7 @@ export default function EngineeringHero({
               ))}
               <div className="engineering-core-brand">
                 <span>e</span>
-                <strong>eigi_ai</strong>
+                <strong className="brand-type">eigi_ai</strong>
               </div>
             </div>
             <p className="engineering-core-caption">

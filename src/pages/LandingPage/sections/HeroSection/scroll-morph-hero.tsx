@@ -262,7 +262,7 @@ export default function ScrollMorphHero({
             style={{ opacity: centerOpacity }}
             aria-hidden="true"
           >
-            <span>eigi.ai</span>
+            <span className="brand-type">eigi.ai</span>
             <small>INTELLIGENCE, CONNECTED.</small>
           </motion.div>
         )}

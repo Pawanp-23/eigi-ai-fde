@@ -203,7 +203,7 @@ export default function SignalHero({
       <div className="signal-frame">
         <div className="signal-kicker">
           <span>
-            <i /> FORWARD DEPLOYED ENGINEERING
+            <i /> FORWARD DEPLOYED ENGINEER
           </span>
           <span>BUILT FOR THE FUTURE. AVAILABLE TODAY.</span>
         </div>
