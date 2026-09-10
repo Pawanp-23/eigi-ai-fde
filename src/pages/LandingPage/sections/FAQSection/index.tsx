@@ -48,36 +48,27 @@ const questions = [
 function Answer({ text }: { text: string }) {
   const reduced = useReducedMotion();
   if (reduced) return <p>{text}</p>;
-  let offset = 0;
+  const words = text.split(' ');
   return (
     <p>
       <span className="sr-only">{text}</span>
       <span aria-hidden="true">
-        {text.split(' ').map((word, wordIndex) => {
-          const start = offset;
-          offset += word.length + 1;
-          return (
-            <span key={wordIndex}>
-              <span className="faq-reveal-word">
-                {Array.from(word).map((letter, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ opacity: 0, filter: 'blur(5px)' }}
-                    animate={{ opacity: 1, filter: 'blur(0px)' }}
-                    transition={{
-                      duration: 0.25,
-                      delay:
-                        (start + index) * Math.min(0.008, 1.3 / text.length),
-                      ease: 'easeOut',
-                    }}
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-              </span>{' '}
-            </span>
-          );
-        })}
+        {words.map((word, index) => (
+          <span key={index}>
+            <motion.span
+              className="faq-reveal-word"
+              initial={{ opacity: 0, filter: 'blur(5px)' }}
+              animate={{ opacity: 1, filter: 'blur(0px)' }}
+              transition={{
+                duration: 0.25,
+                delay: index * Math.min(0.035, 1.3 / words.length),
+                ease: 'easeOut',
+              }}
+            >
+              {word}
+            </motion.span>{' '}
+          </span>
+        ))}
       </span>
     </p>
   );
