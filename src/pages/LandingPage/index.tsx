@@ -671,6 +671,7 @@ export default function Home() {
               ['04', 'Possibilities', '#capabilities'],
               ['05', 'Expertise', '#eigi-team'],
               ['06', 'The experience', '#experience'],
+              ['07', 'FAQs', '#faq'],
             ].map(([n, label, href]) => (
               <a
                 href={href}

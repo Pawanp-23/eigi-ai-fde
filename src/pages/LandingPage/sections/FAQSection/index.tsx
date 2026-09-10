@@ -47,14 +47,39 @@ const questions = [
 
 function Answer({ text }: { text: string }) {
   const reduced = useReducedMotion();
+  if (reduced) return <p>{text}</p>;
+  let offset = 0;
   return (
-    <motion.p
-      initial={reduced ? false : { opacity: 0, filter: 'blur(3px)' }}
-      animate={{ opacity: 1, filter: 'blur(0px)' }}
-      transition={{ duration: reduced ? 0 : 0.3 }}
-    >
-      {text}
-    </motion.p>
+    <p>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {text.split(' ').map((word, wordIndex) => {
+          const start = offset;
+          offset += word.length + 1;
+          return (
+            <span key={wordIndex}>
+              <span className="faq-reveal-word">
+                {Array.from(word).map((letter, index) => (
+                  <motion.span
+                    key={index}
+                    initial={{ opacity: 0, filter: 'blur(5px)' }}
+                    animate={{ opacity: 1, filter: 'blur(0px)' }}
+                    transition={{
+                      duration: 0.25,
+                      delay:
+                        (start + index) * Math.min(0.008, 1.3 / text.length),
+                      ease: 'easeOut',
+                    }}
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </span>{' '}
+            </span>
+          );
+        })}
+      </span>
+    </p>
   );
 }
 
