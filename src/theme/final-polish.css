@@ -907,3 +907,36 @@
     height: 460px;
   }
 }
+
+/* Keep animated glyphs intact and native controls consistent with the theme. */
+.intro .word-window {
+  overflow: visible;
+}
+html[data-theme='dark'] {
+  color-scheme: dark;
+  scrollbar-color: #566074 #101319;
+}
+html[data-theme='light'] {
+  color-scheme: light;
+  scrollbar-color: #a0a6b5 #f6f7fb;
+}
+.navigation-refined {
+  scrollbar-width: thin;
+  scrollbar-color: #a0a6b5 #f6f7fb;
+}
+[data-theme='dark'] .navigation-refined {
+  color-scheme: dark;
+  scrollbar-color: #566074 #101319;
+}
+[data-theme='dark'] .navigation-refined .sheet-top > button.pill {
+  background: #252d3b;
+  color: #f4f6fb;
+  border: 1px solid #536078;
+}
+[data-theme='dark'] .navigation-refined .sheet-top > button.pill:hover {
+  background: #36425a;
+}
+[data-theme='dark'] .navigation-refined .sheet-top > button.pill:focus-visible {
+  outline: 2px solid #a7b7ff;
+  outline-offset: 3px;
+}

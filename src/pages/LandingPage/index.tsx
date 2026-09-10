@@ -621,9 +621,6 @@ export default function Home() {
             <span className="brand-type">eigi_ai</span>
           </span>
           <span>FORWARD DEPLOYED ENGINEERING</span>
-          <span>
-            <a href="#approach">OUR APPROACH &nearr;</a>
-          </span>
         </div>
       </footer>
       <Sheet
