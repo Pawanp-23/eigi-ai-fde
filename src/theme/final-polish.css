@@ -512,3 +512,78 @@
     font-size: 36px;
   }
 }
+
+/* Self-hosted brand type: keep surrounding copy in the reading face. */
+@font-face {
+  font-family: 'Aldrich';
+  src: url('/fonts/aldrich/Aldrich-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+.brand-type,
+.wordmark,
+.brand-lockup,
+.little-mark,
+.eigi-team-heading h2 .team-brand-type {
+  font-family: 'Aldrich', sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: -0.035em;
+}
+.capability-card .capability-visual {
+  height: clamp(360px, 35vw, 530px);
+  isolation: isolate;
+}
+.capability-card .sculpture {
+  top: 40px;
+  bottom: 104px;
+  height: auto;
+}
+.capability-card .card-index,
+.capability-card .card-tag {
+  z-index: 2;
+}
+.project-preview-title {
+  position: absolute;
+  left: 26px;
+  right: 82px;
+  bottom: 66px;
+  font-size: clamp(23px, 2.3vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  text-align: left;
+  color: #fff;
+}
+.capability-card .diagram-label {
+  font-size: 10px;
+  right: 78px;
+  text-align: left;
+}
+.capability-card .card-open {
+  bottom: 32px;
+}
+@media (max-width: 600px) {
+  .capability-card .card-index {
+    left: 18px;
+    top: 20px;
+  }
+  .capability-card .card-tag {
+    right: 18px;
+    top: 22px;
+    font-size: 9px;
+  }
+  .project-preview-title {
+    left: 18px;
+    font-size: 25px;
+  }
+  .capability-card .diagram-label {
+    left: 18px;
+    font-size: 9px;
+  }
+  .capability-card .card-open {
+    right: 18px;
+    width: 44px;
+    height: 44px;
+  }
+}

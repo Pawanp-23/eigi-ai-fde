@@ -45,10 +45,10 @@ const contact =
 const capabilities = [
   {
     id: '01',
-    title: 'Knowledge, connected.',
+    title: 'Enterprise knowledge copilot.',
     category: 'ENTERPRISE AI / KNOWLEDGE SYSTEMS',
     variant: 'network',
-    label: 'Connected knowledge system',
+    label: 'Enterprise knowledge copilot project concept',
     description:
       'Turn scattered information into answers your team can trace and trust.',
     detail:
@@ -62,12 +62,12 @@ const capabilities = [
   },
   {
     id: '02',
-    title: 'Operations, reimagined.',
+    title: 'Intelligent document processing.',
     category: 'INTELLIGENT WORKFLOWS / AUTOMATION',
     variant: 'stack',
-    label: 'Workflow orchestration system',
+    label: 'Intelligent document processing project concept',
     description:
-      'Move from manual handoffs to thoughtful, integrated automation.',
+      'Extract, validate, and route documents with human approval built in.',
     detail:
       'A workflow that connects incoming information to the next useful action. Combine structured extraction, business rules, and human approval before updating your systems.',
     steps: [
@@ -480,10 +480,15 @@ export default function Home() {
                   variant={item.variant}
                   paused={paused}
                 />
-                <span className="card-index">EIGI / {item.id}</span>
-                <span className="card-tag">CAPABILITY CONCEPT</span>
+                <span className="card-index">
+                  <span className="brand-type">eigi_ai</span> / {item.id}
+                </span>
+                <span className="card-tag">AI PROJECT CONCEPT</span>
                 <span className="card-open">
                   <ArrowUpRight size={23} />
+                </span>
+                <span className="project-preview-title">
+                  {i === 0 ? 'Knowledge copilot' : 'Document intelligence'}
                 </span>
                 <span className="diagram-label">
                   {i === 0 ? 'CONTEXT → CLARITY' : 'INPUT → OUTCOME'}
@@ -614,7 +619,10 @@ export default function Home() {
           </a>
         </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} eigi_ai</span>
+          <span>
+            © {new Date().getFullYear()}{' '}
+            <span className="brand-type">eigi_ai</span>
+          </span>
           <span>FORWARD DEPLOYED ENGINEERING</span>
           <span>
             <a href="/credits.txt">3D ASSET CREDITS ↗</a>
@@ -702,7 +710,7 @@ export default function Home() {
           {selected !== null && (
             <>
               <p className="eyebrow">
-                EIGI / {capabilities[selected].id} — CAPABILITY CONCEPT
+                EIGI / {capabilities[selected].id} — AI PROJECT CONCEPT
               </p>
               <DialogTitle className="concept-title">
                 {capabilities[selected].title}

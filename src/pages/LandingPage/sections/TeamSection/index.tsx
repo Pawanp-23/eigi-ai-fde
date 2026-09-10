@@ -83,7 +83,15 @@ function DisciplineCard({
           ILLUSTRATIVE PORTRAIT / 0{index + 1}
         </span>
         <div className="eigi-team-caption">
-          <h3>{item.name}</h3>
+          <h3>
+            {item.name === 'Eigi_ai research' ? (
+              <>
+                <span className="brand-type">Eigi_ai</span> research
+              </>
+            ) : (
+              item.name
+            )}
+          </h3>
           <p>{item.role}</p>
         </div>
       </div>
@@ -151,9 +159,9 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
           minds.
         </h2>
         <p className="eigi-team-description">
-          Eigi_ai brings engineering, design, and research together to turn
-          ambitious ideas into useful systems—with clear communication
-          throughout.
+          <span className="brand-type">Eigi_ai</span> brings engineering,
+          design, and research together to turn ambitious ideas into useful
+          systems—with clear communication throughout.
         </p>
         <p className="eigi-team-disclosure">
           Meet the disciplines behind the work. Portraits are illustrative, not
@@ -193,10 +201,12 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
         <p>
           Great work starts with listening.
           <br />
-          At Eigi_ai, we build with your team—from the first conversation to the
-          final handover.
+          At <span className="brand-type">Eigi_ai</span>, we build with your
+          team—from the first conversation to the final handover.
         </p>
-        <span className="eigi-statement-credit">THE EIGI_AI APPROACH</span>
+        <span className="eigi-statement-credit">
+          THE <span className="brand-type">EIGI_AI</span> APPROACH
+        </span>
         <a
           href="mailto:buddy@eigi.ai?subject=Let%E2%80%99s%20build%20with%20Eigi_ai"
           className="pill dark"

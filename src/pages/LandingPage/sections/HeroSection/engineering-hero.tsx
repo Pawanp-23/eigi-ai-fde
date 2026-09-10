@@ -48,7 +48,8 @@ export default function EngineeringHero({
           href="#top"
           className="engineering-logo"
         >
-          eigi_ai<span>/ FDE</span>
+          <span className="brand-type">eigi_ai</span>
+          <span>/ FDE</span>
         </a>
         <nav aria-label="Main navigation">
           <a href="#approach">What we do</a>
@@ -181,7 +182,7 @@ export default function EngineeringHero({
               ))}
               <div className="engineering-core-brand">
                 <span>e</span>
-                <strong>eigi_ai</strong>
+                <strong className="brand-type">eigi_ai</strong>
               </div>
             </div>
             <p className="engineering-core-caption">
