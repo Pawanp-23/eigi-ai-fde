@@ -247,7 +247,7 @@ export default function Home() {
               aria-label="Main navigation"
             >
               <div className="header-section-links">
-                <a href="#method">Our FDE</a>
+                <a href="#eigi-team">Our FDE</a>
                 <a href="#approach">FDE Goals</a>
                 <a href="#contact">Contact Us</a>
               </div>

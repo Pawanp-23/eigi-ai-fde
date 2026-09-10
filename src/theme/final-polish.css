@@ -1077,3 +1077,10 @@ html[data-theme] {
   scrollbar-width: thin;
   scrollbar-color: inherit;
 }
+
+/* Do not retain a native page-scrollbar gutter behind the open menu.
+   The modal still locks page scrolling; its own navigation remains scrollable. */
+html:has(.navigation-refined[data-open]) {
+  scrollbar-gutter: auto !important;
+  background-color: var(--surface) !important;
+}
