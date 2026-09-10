@@ -1069,3 +1069,11 @@ html[data-theme='light'] {
   letter-spacing: 0;
   font-weight: 400;
 }
+/* The modal reserves a root scrollbar gutter: paint it with the active theme. */
+html[data-theme] {
+  background-color: var(--surface);
+}
+.navigation-refined nav {
+  scrollbar-width: thin;
+  scrollbar-color: inherit;
+}
