@@ -5,8 +5,6 @@ import {
   ArrowUpRight,
   ArrowDown,
   Plus,
-  Pause,
-  Play,
   X,
   MoveUpRight,
   Sun,
@@ -24,10 +22,11 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
-import Sculpture from './sections/SculptureSection';
+import AIProjectPreview from './sections/ProjectSection/ai-project-preview';
 import ScrollMorphHero from './sections/HeroSection/scroll-morph-hero';
 import Frontier from './sections/FrontierSection';
 import EigiTeam from './sections/TeamSection';
+import FAQSection from './sections/FAQSection';
 import {
   KineticText,
   Collective,
@@ -42,15 +41,15 @@ import SignalHero from './sections/HeroSection/signal-hero';
 import { ParallaxComponent } from './sections/ParallaxSection';
 
 const contact =
-  'mailto:pawanpatil2305@gmail.com?subject=Let%E2%80%99s%20build%20with%20eigi_ai';
+  'mailto:buddy@eigi.ai?subject=Let%E2%80%99s%20build%20with%20eigi_ai';
 
 const capabilities = [
   {
     id: '01',
-    title: 'Knowledge, connected.',
+    title: 'Enterprise knowledge copilot.',
     category: 'ENTERPRISE AI / KNOWLEDGE SYSTEMS',
     variant: 'network',
-    label: 'Connected knowledge system',
+    label: 'Enterprise knowledge copilot project concept',
     description:
       'Turn scattered information into answers your team can trace and trust.',
     detail:
@@ -64,12 +63,12 @@ const capabilities = [
   },
   {
     id: '02',
-    title: 'Operations, reimagined.',
+    title: 'Intelligent document processing.',
     category: 'INTELLIGENT WORKFLOWS / AUTOMATION',
     variant: 'stack',
-    label: 'Workflow orchestration system',
+    label: 'Intelligent document processing project concept',
     description:
-      'Move from manual handoffs to thoughtful, integrated automation.',
+      'Extract, validate, and route documents with human approval built in.',
     detail:
       'A workflow that connects incoming information to the next useful action. Combine structured extraction, business rules, and human approval before updating your systems.',
     steps: [
@@ -219,7 +218,7 @@ export default function Home() {
         <EngineeringHero
           contact={contact}
           paused={paused}
-          onPause={() => setPaused(!paused)}
+
           onMenu={() => setMenu(true)}
         />
       ) : (
@@ -248,10 +247,9 @@ export default function Home() {
               aria-label="Main navigation"
             >
               <div className="header-section-links">
-                <a href="#method">Our FDE</a>
+                <a href="#eigi-team">Our FDE</a>
                 <a href="#approach">FDE Goals</a>
                 <a href="#contact">Contact Us</a>
-                <a href="#opportunities">Opportunities</a>
               </div>
               <button
                 className="theme-control"
@@ -262,14 +260,6 @@ export default function Home() {
                 title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
               >
                 {dark ? <Sun size={19} /> : <Moon size={19} />}
-              </button>
-              <button
-                className="motion-control"
-                onClick={() => setPaused(!paused)}
-                aria-label={paused ? 'Play animations' : 'Pause animations'}
-                aria-pressed={paused}
-              >
-                {paused ? <Play size={15} /> : <Pause size={15} />}
               </button>
               <a
                 className="pill dark"
@@ -309,7 +299,7 @@ export default function Home() {
                 )}
                 <div className="hero-shade" />
                 <p className="scene-eyebrow">
-                  <span className="status-dot" /> FORWARD DEPLOYED ENGINEERING
+                  <span className="status-dot" /> FORWARD DEPLOYED ENGINEER
                 </p>
                 <HeroPunchline />
                 <div className="hero-bottom">
@@ -415,16 +405,13 @@ export default function Home() {
             </>
           ) : (
             <>
-              <KineticText text="Great AI belongs" />
+              <KineticText text="We Go to Your Client." />
               <br />
-              in the{' '}
-              <span className="blue-text">
-                <KineticText text="real world." />
-              </span>
-              <span className="heading-dot">✳</span>
+              <KineticText text="We Make AI Work." />
             </>
           )}
         </h2>
+        <p className="intro-mission">Dual mission. One impact.</p>
         <div
           className="intro-bottom"
           data-reveal
@@ -487,14 +474,19 @@ export default function Home() {
                 className="capability-visual"
                 data-scroll-shift={i === 0 ? '-65' : '65'}
               >
-                <Sculpture
+                <AIProjectPreview
                   variant={item.variant}
                   paused={paused}
                 />
-                <span className="card-index">EIGI / {item.id}</span>
-                <span className="card-tag">CAPABILITY CONCEPT</span>
+                <span className="card-index">
+                  <span className="brand-type">eigi_ai</span> / {item.id}
+                </span>
+                <span className="card-tag">AI PROJECT CONCEPT</span>
                 <span className="card-open">
                   <ArrowUpRight size={23} />
+                </span>
+                <span className="project-preview-title">
+                  {i === 0 ? 'Knowledge copilot' : 'Document intelligence'}
                 </span>
                 <span className="diagram-label">
                   {i === 0 ? 'CONTEXT → CLARITY' : 'INPUT → OUTCOME'}
@@ -589,31 +581,7 @@ export default function Home() {
         contact={contact}
       />
       <EigiTeam paused={paused} />
-      <section
-        id="opportunities"
-        className="opportunities section-pad"
-      >
-        <div>
-          <p className="eyebrow">OPPORTUNITIES / BUILD WITH EIGI</p>
-          <h2>
-            Make your next
-            <br />
-            chapter matter.
-          </h2>
-        </div>
-        <div>
-          <p>
-            Interested in building useful AI with us? Tell us about your work,
-            your interests, and where you could contribute.
-          </p>
-          <a
-            className="pill dark"
-            href="mailto:pawanpatil2305@gmail.com?subject=Opportunities%20at%20Eigi.ai"
-          >
-            START A CONVERSATION <ArrowUpRight size={18} />
-          </a>
-        </div>
-      </section>
+      <FAQSection />
       <footer
         id="contact"
         className="footer"
@@ -638,7 +606,7 @@ export default function Home() {
               className="email-link"
               href={contact}
             >
-              pawanpatil2305@gmail.com <ArrowUpRight size={20} />
+              buddy@eigi.ai <ArrowUpRight size={20} />
             </a>
           </div>
           <a
@@ -650,11 +618,11 @@ export default function Home() {
           </a>
         </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} eigi_ai</span>
-          <span>FORWARD DEPLOYED ENGINEERING</span>
           <span>
-            <a href="/credits.txt">3D ASSET CREDITS ↗</a>
+            © {new Date().getFullYear()}{' '}
+            <span className="brand-type">eigi_ai</span>
           </span>
+          <span>FORWARD DEPLOYED ENGINEER</span>
         </div>
       </footer>
       <Sheet
@@ -664,11 +632,19 @@ export default function Home() {
       >
         <SheetContent
           finalFocus={() => (pendingSection.current ? false : undefined)}
-          className="navigation-sheet"
+          className="navigation-sheet navigation-refined"
           showCloseButton={false}
         >
           <div className="sheet-top">
-            <SheetTitle className="wordmark">eigi_ai</SheetTitle>
+            <SheetTitle className="wordmark menu-brand">
+              <img
+                src="/eigi-logo.ico"
+                alt=""
+                width={36}
+                height={36}
+              />
+              eigi.ai
+            </SheetTitle>
             <button
               className="pill"
               onClick={() => setMenu(false)}
@@ -677,16 +653,25 @@ export default function Home() {
             </button>
           </div>
           <SheetDescription className="sr-only">
-            Explore eigi_ai forward deployed engineering.
+            Explore eigi_ai forward deployed engineer.
           </SheetDescription>
+          <div className="menu-intro">
+            <span>EXPLORE EIGI</span>
+            <p>
+              Ambition meets
+              <br />
+              execution.
+            </p>
+          </div>
           <nav aria-label="Expanded navigation">
             {[
               ['01', 'Home', '#top'],
               ['02', 'Our approach', '#approach'],
               ['03', 'Disciplines', '#collective'],
               ['04', 'Possibilities', '#capabilities'],
-              ['05', 'Expertise', '#expertise'],
+              ['05', 'Expertise', '#eigi-team'],
               ['06', 'The experience', '#experience'],
+              ['07', 'FAQs', '#faq'],
             ].map(([n, label, href]) => (
               <a
                 href={href}
@@ -698,7 +683,7 @@ export default function Home() {
                 }}
               >
                 <span>{n}</span>
-                {label}
+                <strong>{label}</strong>
                 <ArrowUpRight />
               </a>
             ))}
@@ -722,7 +707,7 @@ export default function Home() {
           {selected !== null && (
             <>
               <p className="eyebrow">
-                EIGI / {capabilities[selected].id} — CAPABILITY CONCEPT
+                EIGI / {capabilities[selected].id} — AI PROJECT CONCEPT
               </p>
               <DialogTitle className="concept-title">
                 {capabilities[selected].title}

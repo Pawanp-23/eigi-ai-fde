@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, Pause, Play, UsersRound } from 'lucide-react';
+import { ArrowUpRight, UsersRound } from 'lucide-react';
 import { Marquee } from '@/components/ui/marquee';
 
 // Template portraits illustrate disciplines until verified team profiles are supplied.
@@ -48,16 +48,21 @@ const disciplines = [
 function DisciplineCard({
   item,
   index,
+  decorative = false,
 }: {
   item: (typeof disciplines)[number];
   index: number;
+  decorative?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
+  const [color, setColor] = useState(false);
 
   return (
     <article
       className="eigi-team-card"
-      tabIndex={0}
+      tabIndex={decorative ? undefined : 0}
+      data-color={color}
+      onPointerDown={() => setColor((value) => !value)}
       aria-label={`${item.name}. ${item.role}. Illustrative portrait.`}
     >
       <div className="eigi-team-portrait">
@@ -83,7 +88,15 @@ function DisciplineCard({
           ILLUSTRATIVE PORTRAIT / 0{index + 1}
         </span>
         <div className="eigi-team-caption">
-          <h3>{item.name}</h3>
+          <h3>
+            {item.name === 'Eigi_ai research' ? (
+              <>
+                <span className="brand-type">Eigi_ai</span> research
+              </>
+            ) : (
+              item.name
+            )}
+          </h3>
           <p>{item.role}</p>
         </div>
       </div>
@@ -93,7 +106,6 @@ function DisciplineCard({
 
 export default function EigiTeam({ paused = false }: { paused?: boolean }) {
   const reduced = useReducedMotion();
-  const [localPaused, setLocalPaused] = useState(true);
 
   return (
     <section
@@ -133,28 +145,12 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
         </div>
         <p className="eyebrow">HUMAN INGENUITY. SHARED AMBITION.</p>
         <h2 id="eigi-team-heading">
-          Creative{' '}
-          <span>
-            Eigi_ai
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 240 24"
-              fill="none"
-            >
-              <path
-                d="M4 16C62 4 157 2 235 10M29 22C91 12 166 13 211 17"
-                stroke="currentColor"
-                strokeWidth="5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>{' '}
-          minds.
+          Creative <span className="team-brand-type">eigi_ai</span> minds.
         </h2>
         <p className="eigi-team-description">
-          Eigi_ai brings engineering, design, and research together to turn
-          ambitious ideas into useful systems—with clear communication
-          throughout.
+          <span className="brand-type">Eigi_ai</span> brings engineering,
+          design, and research together to turn ambitious ideas into useful
+          systems—with clear communication throughout.
         </p>
         <p className="eigi-team-disclosure">
           Meet the disciplines behind the work. Portraits are illustrative, not
@@ -164,26 +160,17 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
       <div className="eigi-team-gallery">
         <div className="eigi-team-gallery-top">
           <span>THE DISCIPLINES / 06</span>
-          <button
-            className="eigi-team-motion"
-            type="button"
-            disabled={paused}
-            aria-pressed={paused || localPaused}
-            aria-label={
-              paused
-                ? 'Portrait motion paused globally'
-                : localPaused
-                  ? 'Resume portrait motion'
-                  : 'Pause portrait motion'
-            }
-            onClick={() => setLocalPaused((value) => !value)}
-          >
-            {paused || localPaused ? <Play size={13} /> : <Pause size={13} />}
-            <span>{paused ? 'PAUSED' : localPaused ? 'RESUME' : 'PAUSE'}</span>
-          </button>
         </div>
         <Marquee
-          paused={paused || localPaused || !!reduced}
+          duplicateChildren={disciplines.map((item, index) => (
+            <DisciplineCard
+              key={item.name}
+              item={item}
+              index={index}
+              decorative
+            />
+          ))}
+          paused={paused || !!reduced}
           pauseOnHover
         >
           {disciplines.map((item, index) => (
@@ -211,12 +198,14 @@ export default function EigiTeam({ paused = false }: { paused?: boolean }) {
         <p>
           Great work starts with listening.
           <br />
-          At Eigi_ai, we build with your team—from the first conversation to the
-          final handover.
+          At <span className="brand-type">Eigi_ai</span>, we build with your
+          team—from the first conversation to the final handover.
         </p>
-        <span className="eigi-statement-credit">THE EIGI_AI APPROACH</span>
+        <span className="eigi-statement-credit">
+          THE <span className="brand-type">EIGI_AI</span> APPROACH
+        </span>
         <a
-          href="mailto:pawanpatil2305@gmail.com?subject=Let%E2%80%99s%20build%20with%20Eigi_ai"
+          href="mailto:buddy@eigi.ai?subject=Let%E2%80%99s%20build%20with%20Eigi_ai"
           className="pill dark"
         >
           LET’S BUILD TOGETHER <ArrowUpRight size={17} />

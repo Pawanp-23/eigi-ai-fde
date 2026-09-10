@@ -4,7 +4,7 @@ Updated: 8 September 2026
 
 ## Purpose
 
-Help prospective clients understand forward deployed engineering: Eigi_ai engineers embed with their team, understand the problem, and design, build, integrate, and deploy useful AI products and software. The site should balance clear communication with memorable visual craft.
+Help prospective clients understand forward deployed engineer: Eigi_ai engineers embed with their team, understand the problem, and design, build, integrate, and deploy useful AI products and software. The site should balance clear communication with memorable visual craft.
 
 The core promise is close collaboration from discovery through delivery. Describe the work and expected outcomes clearly; avoid unsupported claims about being the best, guaranteed results, or exceeding every expectation.
 

@@ -12,7 +12,7 @@ destructive, irreversible, publishing, or remote Git action.
 
 ## What Eigi FDE Is
 
-Eigi FDE is the public Forward Deployed Engineering website for Eigi_ai. It is
+Eigi FDE is the public Forward Deployed Engineer website for Eigi_ai. It is
 a static React application built with Vite and includes interactive hero
 variants, scroll-driven motion, Three.js scenes, light and dark themes, and
 responsive content sections.

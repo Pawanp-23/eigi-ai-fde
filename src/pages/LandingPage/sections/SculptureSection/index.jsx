@@ -92,14 +92,39 @@ export default function Sculpture({
           ring = new T.TorusGeometry(0.52, 0.19, 16, 48),
           block = new RoundedBoxGeometry(1.5, 0.24, 1.5, 3, 0.07);
         const objects = [],
-          count = hero ? 42 : portal ? 36 : variant === 'stack' ? 12 : 22;
+          count = hero ? 42 : portal ? 36 : variant === 'stack' ? 8 : 22;
 
         for (let i = 0; i < count; i++) {
           const object = new T.Group(),
             material = materials[i % 7 < 4 ? 0 : i % 7 < 6 ? 1 : 2];
 
-          if (variant === 'stack') object.add(new T.Mesh(block, material));
-          else if (i % 4 === 0) {
+          if (variant === 'stack') {
+            object.add(new T.Mesh(block, material));
+            // Raised rows make each layer read as a document rather than a slab.
+            for (let row = 0; row < 3; row++) {
+              const line = new T.Mesh(
+                new T.BoxGeometry(0.9 - row * 0.16, 0.025, 0.035),
+                materials[i % 7 < 4 ? 1 : 0],
+              );
+              line.position.set(-row * 0.07, 0.135, -0.32 + row * 0.25);
+              object.add(line);
+            }
+          } else if (variant === 'network') {
+            object.add(
+              new T.Mesh(
+                new RoundedBoxGeometry(0.8, 1.05, 0.22, 2, 0.06),
+                material,
+              ),
+            );
+            for (let row = 0; row < 3; row++) {
+              const line = new T.Mesh(
+                new T.BoxGeometry(0.48, 0.045, 0.025),
+                materials[i % 7 < 4 ? 1 : 0],
+              );
+              line.position.set(0, 0.23 - row * 0.2, 0.125);
+              object.add(line);
+            }
+          } else if (i % 4 === 0) {
             object.add(new T.Mesh(ring, material));
           } else {
             const a = new T.Mesh(beam, material),
@@ -162,6 +187,39 @@ export default function Sculpture({
               }),
             ),
           );
+
+        const packets = [];
+        if (variant === 'network') {
+          const core = new T.Mesh(
+            new RoundedBoxGeometry(1.25, 1.25, 1.25, 3, 0.18),
+            materials[1],
+          );
+          group.add(core);
+          const coreRing = new T.Mesh(
+            new T.TorusGeometry(1.05, 0.035, 12, 64),
+            materials[0],
+          );
+          coreRing.rotation.x = Math.PI / 2;
+          core.add(coreRing);
+          objects.forEach(({ loose }, i) => {
+            group.add(
+              new T.Line(
+                new T.BufferGeometry().setFromPoints([new T.Vector3(), loose]),
+                new T.LineBasicMaterial({
+                  color: 0x8eabff,
+                  transparent: true,
+                  opacity: 0.22,
+                }),
+              ),
+            );
+            const packet = new T.Mesh(
+              new T.SphereGeometry(0.055, 8, 8),
+              materials[1],
+            );
+            group.add(packet);
+            packets.push({ packet, target: loose, offset: i / objects.length });
+          });
+        }
 
         const key = new T.DirectionalLight(0xffffff, 1.8);
         key.position.set(-4, 5, 8);
@@ -329,10 +387,12 @@ export default function Sculpture({
             camera.position.z = 13 - localProgress * 3;
           } else {
             group.position.set(0, 0, 0);
-            group.scale.setScalar(variant === 'network' ? 0.72 : 1);
+            group.scale.setScalar(variant === 'network' ? 0.82 : 0.88);
             group.rotation.set(
               0.15 + ry * 0.25,
-              rx * 0.3 + (localProgress - 0.5) * 1.4,
+              rx * 0.3 +
+                (localProgress - 0.5) * 1.4 +
+                (variant === 'network' ? time * 0.045 : 0),
               variant === 'stack' ? (localProgress - 0.5) * 0.12 : 0,
             );
             camera.position.z = variant === 'stack' ? 9 : 12;
@@ -362,7 +422,7 @@ export default function Sculpture({
               } else if (variant === 'stack') {
                 object.position.set(
                   Math.sin(i * 0.4 + time * 0.3) * 0.1,
-                  (i - 5.5) * (0.34 + localProgress * 0.13),
+                  (i - 3.5) * (0.48 + localProgress * 0.13),
                   0,
                 );
                 object.rotation.set(
@@ -383,6 +443,11 @@ export default function Sculpture({
               }
             },
           );
+          packets.forEach(({ packet, target, offset }) => {
+            packet.position
+              .copy(target)
+              .multiplyScalar((time * 0.16 + offset) % 1);
+          });
           dust.rotation.z = time * 0.012;
           camera.lookAt(0, 0, -2);
           renderer.render(scene, camera);

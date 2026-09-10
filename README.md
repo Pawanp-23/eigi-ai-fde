@@ -1,4 +1,4 @@
-# Eigi_ai — Forward Deployed Engineering
+# Eigi_ai — Forward Deployed Engineer
 
 An interactive FDE website with a pointer-responsive pixel hero, light/dark themes, scroll-driven AI capability cards, floating expertise cards, and engineering-discipline sections.
 
