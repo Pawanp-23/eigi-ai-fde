@@ -1051,17 +1051,18 @@ html[data-theme='light'] {
   display: inline-block;
 }
 .fde-faq {
-  font-family: var(--font-geist-sans);
+  font-family: inherit;
 }
 .fde-faq-intro h2 {
   font-size: clamp(34px, 3.5vw, 50px);
-  font-weight: 500;
+  font-weight: 450;
   letter-spacing: -0.045em;
   line-height: 1.15;
 }
 .fde-faq-list [data-slot='accordion-trigger'] {
-  font-weight: 600;
-  letter-spacing: -0.015em;
+  font-family: inherit;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 .fde-faq-list [data-slot='accordion-content'] p {
   font-size: 16px;
@@ -1090,4 +1091,13 @@ html:has(.navigation-refined[data-open]) {
 .eigi-team-card:focus img,
 .eigi-team-card[data-color='true'] img {
   filter: grayscale(0);
+}
+/* Keep menu scrolling available without a persistent scrollbar indicator. */
+.navigation-refined,
+.navigation-refined nav {
+  scrollbar-width: none;
+}
+.navigation-refined::-webkit-scrollbar,
+.navigation-refined nav::-webkit-scrollbar {
+  display: none;
 }
