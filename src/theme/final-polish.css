@@ -940,3 +940,105 @@ html[data-theme='light'] {
   outline: 2px solid #a7b7ff;
   outline-offset: 3px;
 }
+/* FDE questions: editorial introduction and accessible accordion. */
+.fde-faq {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: clamp(32px, 6vw, 96px);
+  padding: clamp(64px, 8vw, 120px) 5%;
+  background: var(--surface);
+  color: var(--text-primary);
+  border-top: 1px solid var(--border-color, #b7bece40);
+}
+.fde-faq-intro > .eyebrow {
+  margin: 0 0 20px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.fde-faq-intro h2 {
+  font-size: clamp(34px, 4vw, 58px);
+  letter-spacing: -0.055em;
+  line-height: 1.1;
+  margin: 0 0 22px;
+  font-weight: 450;
+}
+.fde-faq-intro > p:not(.eyebrow) {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 340px;
+}
+.fde-faq-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+  margin-top: 22px;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.fde-faq-list [data-slot='accordion-item'] {
+  border-bottom: 1px solid #9ba7bf55;
+}
+.fde-faq-list [data-slot='accordion-trigger'] {
+  padding: 23px 0;
+  min-height: 68px;
+  gap: 16px;
+  align-items: center;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+.fde-faq-list [data-slot='accordion-trigger']:hover {
+  text-decoration: none;
+  color: var(--blue);
+}
+.fde-faq-list [data-slot='accordion-trigger'] > span:nth-child(2) {
+  flex: 1;
+}
+.fde-faq-number {
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-family: monospace;
+}
+.fde-faq-list [data-slot='accordion-content'] p {
+  margin: 0;
+  padding: 0 30px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+.fde-faq a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 5px;
+}
+@media (max-width: 760px) {
+  .fde-faq {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 64px 6%;
+  }
+  .fde-faq-intro > p:not(.eyebrow) {
+    max-width: none;
+  }
+  .fde-faq-contact {
+    margin-top: 8px;
+  }
+  .fde-faq-list [data-slot='accordion-trigger'] {
+    font-size: 16px;
+    gap: 12px;
+  }
+  .fde-faq-list [data-slot='accordion-content'] p {
+    padding-left: 26px;
+    padding-right: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fde-faq [data-slot='accordion-content'] {
+    animation: none;
+    transition: none;
+  }
+}

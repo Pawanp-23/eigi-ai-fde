@@ -26,6 +26,7 @@ import AIProjectPreview from './sections/ProjectSection/ai-project-preview';
 import ScrollMorphHero from './sections/HeroSection/scroll-morph-hero';
 import Frontier from './sections/FrontierSection';
 import EigiTeam from './sections/TeamSection';
+import FAQSection from './sections/FAQSection';
 import {
   KineticText,
   Collective,
@@ -580,6 +581,7 @@ export default function Home() {
         contact={contact}
       />
       <EigiTeam paused={paused} />
+      <FAQSection />
       <footer
         id="contact"
         className="footer"
